@@ -1,0 +1,36 @@
+{
+	"name": "@ceop/plugin-css",
+	"version": "1.0.0",
+	"description": "> TODO: description",
+	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
+	"homepage": "",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/plugin-css.esm.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"publishConfig": {
+		"registry": "https://registry.yarnpkg.com"
+	},
+	"scripts": {
+		"start": "tsdx watch --tsconfig ./tsconfig.json",
+		"build": "tsdx build --tsconfig ./tsconfig.json",
+		"lint": "eslint src/* --fix"
+	},
+	"dependencies": {
+		"@ceop/utils": "^1.0.0",
+		"css-loader": "^6.4.0",
+		"css-modules-typescript-loader": "^4.0.1",
+		"mini-css-extract-plugin": "^2.4.2",
+		"postcss": "^8.3.9",
+		"postcss-loader": "^6.2.0",
+		"postcss-preset-env": "^6.7.0",
+		"resolve-url-loader": "^4.0.0",
+		"sass": "^1.43.2",
+		"sass-loader": "^12.2.0",
+		"style-loader": "^3.3.0"
+	}
+}

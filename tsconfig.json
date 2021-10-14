@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.build.json",
+	"include": ["packages"],
+	"compilerOptions": {
+		"allowJs": false,
+		"baseUrl": ".",
+		"paths": {
+			"@ceop/utils": ["packages/utils/src"],
+			"@ceop/core": ["packages/core/src"],
+			"@ceop/cli": ["packages/cli/src"]
+		}
+	}
+}

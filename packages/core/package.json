@@ -1,0 +1,42 @@
+{
+	"name": "@ceop/core",
+	"version": "1.0.0",
+	"description": "> TODO: description",
+	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
+	"homepage": "",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/core.esm.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"publishConfig": {
+		"registry": "https://registry.yarnpkg.com"
+	},
+	"scripts": {
+		"start": "tsdx watch --tsconfig ./tsconfig.json",
+		"build": "tsdx build --tsconfig ./tsconfig.json",
+		"lint": "eslint src/* --fix"
+	},
+	"dependencies": {
+		"@babel/core": "^7.15.8",
+		"@babel/preset-env": "^7.15.8",
+		"@babel/preset-react": "^7.14.5",
+		"@ceop/logger": "^1.0.0",
+		"@ceop/utils": "^1.0.0",
+		"babel-loader": "^8.2.2",
+		"core-js": "^3.18.3",
+		"razzle-start-server-webpack-plugin": "^4.1.0",
+		"ts-loader": "^9.2.6",
+		"tsconfig-paths-webpack-plugin": "^3.5.1",
+		"webpack": "^5.53.0",
+		"webpack-dev-server": "^4.2.1",
+		"webpack-node-externals": "^3.0.0"
+	},
+	"devDependencies": {
+		"@types/webpack-dev-server": "^4.1.0",
+		"@types/webpack-node-externals": "^2.5.2"
+	}
+}

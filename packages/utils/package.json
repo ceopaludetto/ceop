@@ -1,0 +1,31 @@
+{
+	"name": "@ceop/utils",
+	"version": "1.0.0",
+	"description": "> TODO: description",
+	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
+	"homepage": "",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/utils.esm.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"publishConfig": {
+		"registry": "https://registry.yarnpkg.com"
+	},
+	"scripts": {
+		"start": "tsdx watch --tsconfig ./tsconfig.json",
+		"build": "tsdx build --tsconfig ./tsconfig.json",
+		"lint": "eslint src/* --fix"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "^9.0.13",
+		"webpack": "^5.53.0"
+	},
+	"dependencies": {
+		"fs-extra": "^10.0.0",
+		"yup": "^0.32.9"
+	}
+}

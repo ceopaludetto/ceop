@@ -1,0 +1,31 @@
+{
+	"name": "root",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^4.31.2",
+		"@typescript-eslint/parser": "^4.31.2",
+		"eslint": "^7.32.0",
+		"eslint-config-airbnb-base": "^14.2.1",
+		"eslint-config-airbnb-typescript": "^14.0.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.24.2",
+		"eslint-plugin-import-helpers": "^1.1.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"lerna": "^4.0.0",
+		"prettier": "^2.4.1",
+		"tsdx": "^0.14.1",
+		"tslib": "^2.3.1",
+		"typescript": "^4.4.3"
+	},
+	"scripts": {
+		"bootstrap": "lerna bootstrap --use-workspaces",
+		"start": "lerna run start --stream --parallel",
+		"build": "lerna run build",
+		"example:both": "cd examples/both && yarn start",
+		"example:serveronly": "cd examples/serveronly && yarn start",
+		"postinstall": "lerna bootstrap --use-workspaces"
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"name": "@ceop/logger",
+	"version": "1.0.0",
+	"description": "> TODO: description",
+	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
+	"homepage": "",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/logger.esm.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"publishConfig": {
+		"registry": "https://registry.yarnpkg.com"
+	},
+	"scripts": {
+		"start": "tsdx watch --tsconfig ./tsconfig.json",
+		"build": "tsdx build --tsconfig ./tsconfig.json",
+		"lint": "eslint src/* --fix"
+	},
+	"dependencies": {
+		"chalk": "^4.1.2"
+	}
+}
