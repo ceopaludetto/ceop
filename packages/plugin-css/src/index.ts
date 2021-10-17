@@ -1,4 +1,4 @@
-import { Target, addRule } from "@ceop/utils";
+import { Target, addRule, addPlugin } from "@ceop/utils";
 // @ts-ignore
 import MiniCssPlugin from "mini-css-extract-plugin";
 import type { Configuration, RuleSetUseItem } from "webpack";
@@ -55,12 +55,12 @@ export default function apply(configuration: Configuration, target: Target, isDe
 	})(configuration);
 
 	if (target === "client" && !isDev) {
-		configuration.plugins?.push(
+		addPlugin(
 			new MiniCssPlugin({
 				filename: "static/css/[name].css",
 				chunkFilename: "static/css/[name].chunk.css",
 			}),
-		);
+		)(configuration);
 	}
 
 	return configuration;

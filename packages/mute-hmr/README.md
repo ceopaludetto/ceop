@@ -1,11 +1,11 @@
-# `@ceop/logger`
+# `@ceop/mute-hmr`
 
 > TODO: description
 
 ## Usage
 
 ```
-const logger = require('@ceop/logger');
+const muteHmr = require('@ceop/mute-hmr');
 
 // TODO: DEMONSTRATE API
 ```

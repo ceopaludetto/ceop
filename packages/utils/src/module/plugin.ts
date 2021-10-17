@@ -8,6 +8,10 @@ export async function getPlugins(configuration: CeopConfiguration) {
 	if (configuration?.plugins?.length) {
 		return Promise.all(
 			configuration.plugins.map(async (plugin) => {
+				if (typeof plugin === "function") {
+					return plugin;
+				}
+
 				if (!(await exists(plugin))) {
 					throw new Error(`Plugin ${plugin} not found`);
 				}
@@ -20,12 +24,8 @@ export async function getPlugins(configuration: CeopConfiguration) {
 	return [];
 }
 
-export async function applyPlugins(
-	ceopConfiguration: CeopConfiguration,
-	configuration: Configuration,
-	target: Target,
-	isDev: boolean,
-) {
+export async function applyPlugins(ceopConfiguration: CeopConfiguration, configuration: Configuration, target: Target) {
+	const isDev = process.env.NODE_ENV !== "production";
 	const plugins = await getPlugins(ceopConfiguration);
 
 	for (const plugin of plugins) {

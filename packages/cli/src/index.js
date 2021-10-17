@@ -9,6 +9,7 @@ program
 	.command("start")
 	.description("Start webpack compilations in dev mode")
 	.action(async () => {
+		process.env.NODE_ENV = "development";
 		await start();
 	});
 
@@ -16,6 +17,7 @@ program
 	.command("build")
 	.description("Build project")
 	.action(async () => {
+		process.env.NODE_ENV = "production";
 		await build();
 	});
 

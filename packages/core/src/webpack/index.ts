@@ -1,16 +1,18 @@
 /* eslint-disable no-nested-ternary */
 import { CeopConfiguration, Target, normalize, context } from "@ceop/utils";
 // @ts-ignore
-import StartServerWebpackPlugin from "razzle-start-server-webpack-plugin";
+import StartServerPlugin from "razzle-start-server-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import Webpack, { Configuration } from "webpack";
 import externals from "webpack-node-externals";
 
+import { getEnv } from "./env";
 import { tsRule } from "./rules";
 
-export function createConfiguration(target: Target, isDev: boolean, configuration: CeopConfiguration): Configuration {
+export function createConfiguration(target: Target, configuration: CeopConfiguration, devPort: number): Configuration {
 	const entry: string[] = [];
 
+	const isDev = process.env.NODE_ENV !== "production";
 	const isClient = target === "client";
 	const isServer = target === "server";
 
@@ -22,21 +24,30 @@ export function createConfiguration(target: Target, isDev: boolean, configuratio
 		if (isClient) entry.push(normalize("src/client/index.tsx"));
 		if (isServer) entry.push(normalize("src/server/index.ts"));
 
-		if (isServer && isDev) entry.unshift("webpack/hot/poll?300");
+		if (isServer && isDev) {
+			entry.unshift(`${require.resolve("webpack/hot/poll")}?300`);
+			entry.unshift(require.resolve("@ceop/mute-hmr"));
+		}
 	}
 
-	const publicPath = isDev ? "http://localhost:3001/" : "/";
+	const publicPath = isDev ? `http://localhost:${devPort}/` : "/";
 	const outputPath = isClient ? normalize("dist/public") : normalize("dist");
+
+	const env = getEnv();
 
 	return {
 		mode: isDev ? "development" : "production",
 		target: isServer ? "node" : "web",
 		bail: !isDev,
 		externals: [isServer && externals({ allowlist: ["webpack/hot/poll?300"] })].filter(Boolean) as any,
+		devtool: isDev ? "eval-source-map" : "source-map",
 		entry,
 		context,
-		stats: false,
 		watch: !isDev,
+		stats: "none",
+		infrastructureLogging: {
+			level: "none",
+		},
 		output: {
 			path: outputPath,
 			publicPath,
@@ -53,27 +64,33 @@ export function createConfiguration(target: Target, isDev: boolean, configuratio
 			},
 		},
 		module: {
-			rules: [tsRule(target)],
+			rules: [tsRule(target, isDev)],
 		},
 		plugins: [
+			isDev && new Webpack.HotModuleReplacementPlugin(),
 			isDev &&
 				isServer &&
-				new Webpack.HotModuleReplacementPlugin({
-					multiStep: isClient,
+				new StartServerPlugin({
+					nodeArgs: ["-r", require.resolve("source-map-support/register")],
+					killOnExit: false,
+					killOnError: false,
+					verbose: false,
+					debug: false,
+					inject: false,
 				}),
-			isDev && isServer && new StartServerWebpackPlugin({ killOnExit: true }),
+			new Webpack.DefinePlugin(env),
 		].filter(Boolean) as any,
 		resolve: {
 			extensions: [".js", ".jsx", ".ts", ".tsx"],
 			plugins: [new TsconfigPathsPlugin({ configFile: normalize("tsconfig.json") })],
 		},
 		devServer:
-			isDev && isClient
+			isClient && isDev
 				? {
 						compress: true,
 						headers: { "Access-Control-Allow-Origin": "*" },
 						hot: true,
-						port: 3001,
+						port: devPort,
 						client: {
 							logging: "none",
 						},

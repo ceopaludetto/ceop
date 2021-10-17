@@ -1,24 +1,49 @@
-import { Logger } from "@ceop/logger";
 import { getConfigFile, applyPlugins, cleanFolder } from "@ceop/utils";
-import { webpack, Watching } from "webpack";
+import { webpack, Watching, Configuration, Compiler } from "webpack";
 import DevServer from "webpack-dev-server";
 
+import { captureLogs, logger } from "../utils/log";
+import { parsePorts } from "../utils/port";
 import { createConfiguration } from "../webpack";
+
+function compile(configuration: Configuration) {
+	let compiler: Compiler;
+
+	try {
+		compiler = webpack(configuration);
+	} catch (err) {
+		logger.error("Failed to compile");
+		if ((err as any).message) {
+			console.error((err as any).message);
+		}
+		console.error((err as any).stack || err);
+		if ((err as any).details) {
+			console.error((err as any).details);
+		}
+
+		process.exit(1);
+	}
+
+	return compiler;
+}
 
 export async function start() {
 	const ceopConfiguration = await getConfigFile();
 
-	Logger.log("cleaning dist folder...");
+	logger.info("Cleaning dist folder...");
 	await cleanFolder("dist");
-	Logger.success("cleaned");
 
-	Logger.verbose(`configuration mode: ${ceopConfiguration.mode}`);
+	logger.trace(`Configuration mode: ${ceopConfiguration.mode}`);
+
+	const { port, devPort } = await parsePorts();
 
 	if (ceopConfiguration.mode === "serveronly") {
-		let webpackOptions = createConfiguration("server", true, ceopConfiguration);
+		let webpackOptions = createConfiguration("server", ceopConfiguration, devPort);
 
-		webpackOptions = await applyPlugins(ceopConfiguration, webpackOptions, "server", true);
-		const compiler = webpack(webpackOptions);
+		webpackOptions = await applyPlugins(ceopConfiguration, webpackOptions, "server");
+		const compiler = compile(webpackOptions);
+
+		captureLogs([compiler], port);
 
 		const watching = compiler.watch({}, () => {});
 
@@ -28,28 +53,23 @@ export async function start() {
 			});
 		});
 	} else {
-		let clientWebpackOptions = createConfiguration("client", true, ceopConfiguration);
-		clientWebpackOptions = await applyPlugins(ceopConfiguration, clientWebpackOptions, "client", true);
-		const clientCompiler = webpack(clientWebpackOptions);
+		let clientWebpackOptions = createConfiguration("client", ceopConfiguration, devPort);
+		clientWebpackOptions = await applyPlugins(ceopConfiguration, clientWebpackOptions, "client");
+		const clientCompiler = compile(clientWebpackOptions);
 
-		let serverWebpackOptions = createConfiguration("server", true, ceopConfiguration);
-		serverWebpackOptions = await applyPlugins(ceopConfiguration, serverWebpackOptions, "server", true);
-		const serverCompiler = webpack(serverWebpackOptions);
+		let serverWebpackOptions = createConfiguration("server", ceopConfiguration, devPort);
+		serverWebpackOptions = await applyPlugins(ceopConfiguration, serverWebpackOptions, "server");
+		const serverCompiler = compile(serverWebpackOptions);
 
 		let watching!: Watching;
 
-		clientCompiler.hooks.beforeCompile.tap("ceop", () => {
-			Logger.clear();
-			Logger.log("compiling...");
-		});
+		captureLogs([clientCompiler, serverCompiler], port, 1, true);
 
 		clientCompiler.hooks.done.tap("ceop", () => {
 			if (!watching) watching = serverCompiler.watch({}, () => {});
-			Logger.clear();
-			Logger.success("compiled");
 		});
 
-		const devServer = new DevServer(clientWebpackOptions?.devServer ?? { client: { logging: "none" } }, clientCompiler);
+		const devServer = new DevServer(clientWebpackOptions?.devServer ?? {}, clientCompiler);
 
 		devServer.start();
 

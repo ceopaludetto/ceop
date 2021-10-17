@@ -1,15 +1,14 @@
-import { Logger } from "@ceop/logger";
 import { applyPlugins, cleanFolder, getConfigFile } from "@ceop/utils";
 import { webpack, Configuration } from "webpack";
 
+import { logger } from "../utils/log";
 import { createConfiguration } from "../webpack";
 
 export async function build() {
 	const ceopConfiguration = await getConfigFile();
 
-	Logger.log("cleaning dist folder...");
+	logger.info("Cleaning dist folder...");
 	await cleanFolder("dist");
-	Logger.success("cleaned");
 
 	function compile(configuration: Configuration) {
 		return new Promise<void>((resolve, reject) => {
@@ -21,27 +20,21 @@ export async function build() {
 		});
 	}
 
-	Logger.verbose(`configuration mode: ${ceopConfiguration.mode}`);
+	logger.trace(`Configuration mode: ${ceopConfiguration.mode}`);
 
 	if (ceopConfiguration.mode === "serveronly") {
-		Logger.log("compiling...");
-		let webpackOptions = createConfiguration("server", false, ceopConfiguration);
+		let webpackOptions = createConfiguration("server", ceopConfiguration, 0);
 
-		webpackOptions = await applyPlugins(ceopConfiguration, webpackOptions, "server", false);
+		webpackOptions = await applyPlugins(ceopConfiguration, webpackOptions, "server");
 		await compile(webpackOptions);
-
-		Logger.success("compiled");
 	} else {
-		Logger.log("compiling...");
-		let clientWebpackOptions = createConfiguration("client", false, ceopConfiguration);
-		clientWebpackOptions = await applyPlugins(ceopConfiguration, clientWebpackOptions, "client", false);
+		let clientWebpackOptions = createConfiguration("client", ceopConfiguration, 0);
+		clientWebpackOptions = await applyPlugins(ceopConfiguration, clientWebpackOptions, "client");
 
-		let serverWebpackOptions = createConfiguration("server", false, ceopConfiguration);
-		serverWebpackOptions = await applyPlugins(ceopConfiguration, serverWebpackOptions, "server", false);
+		let serverWebpackOptions = createConfiguration("server", ceopConfiguration, 0);
+		serverWebpackOptions = await applyPlugins(ceopConfiguration, serverWebpackOptions, "server");
 
 		await Promise.all([compile(clientWebpackOptions), compile(serverWebpackOptions)]);
-
-		Logger.success("compiled");
 	}
 
 	process.exit(0);

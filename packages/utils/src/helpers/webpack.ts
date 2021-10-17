@@ -1,4 +1,4 @@
-import type { Configuration, RuleSetRule } from "webpack";
+import type { Configuration, RuleSetRule, WebpackPluginInstance } from "webpack";
 
 export function findRuleByRegex(regex: string, callback: (rule: RuleSetRule) => RuleSetRule) {
 	return (configuration: Configuration) => {
@@ -42,5 +42,11 @@ export function addBabelPluginsOrPresets(type: "plugins" | "presets", add: (stri
 export function addRule(rule: RuleSetRule) {
 	return (configuration: Configuration) => {
 		configuration.module?.rules?.push(rule);
+	};
+}
+
+export function addPlugin(plugin: WebpackPluginInstance) {
+	return (configuration: Configuration) => {
+		configuration.plugins?.push(plugin);
 	};
 }

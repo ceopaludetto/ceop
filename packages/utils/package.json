@@ -25,6 +25,7 @@
 		"webpack": "^5.53.0"
 	},
 	"dependencies": {
+		"detect-port-alt": "^1.1.6",
 		"fs-extra": "^10.0.0",
 		"yup": "^0.32.9"
 	}

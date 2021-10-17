@@ -1,5 +1,12 @@
+import { useState } from "react";
 import s from "./style.module.scss";
 
 export function App() {
-	return <div className={s.container}>aedaedaedade</div>;
+	const [count, setCount] = useState(0);
+
+	return (
+		<div className={s.container}>
+			<button onClick={() => setCount((current) => current + 1)}>{count}</button>
+		</div>
+	);
 }

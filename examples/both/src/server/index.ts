@@ -1,15 +1,15 @@
-import express from 'express'
+import http from "http";
+import { app } from "./server";
 
-import { render } from './render';
+const server = http.createServer(app);
+let curr = app;
 
-const app = express();
+server.listen(3000, () => console.log("started"));
 
-app.get("*", (request, response) => {
-  return response.send(render())
-})
-
-app.listen(3000)
-
-// if(module.hot) {
-//   module.hot.accept()
-// }
+if (module.hot) {
+	module.hot.accept("./server", () => {
+		server.removeListener("request", curr);
+		server.on("request", app);
+		curr = app;
+	});
+}
