@@ -2,16 +2,3 @@
 packages/**/dist/**
 examples
 node_modules
-
-# macOS
-.DS_Store
-
-# windows
-[Dd]esktop.ini
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
