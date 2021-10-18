@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/plugin-loadable",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "> TODO: description",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
@@ -18,9 +18,9 @@
 		"lint": "eslint src/* --fix"
 	},
 	"dependencies": {
-		"@ceop/utils": "^1.0.3",
+		"@ceop/utils": "^1.0.4",
 		"@loadable/babel-plugin": "^5.13.2",
 		"@loadable/webpack-plugin": "^5.15.1"
 	},
-	"gitHead": "bff8c05c172f2f77bee237e01259b4eae14afd3b"
+	"gitHead": "b57288938742a930f9fae3e4ce8311280eb267aa"
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/plugin-css",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "> TODO: description",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
@@ -18,7 +18,7 @@
 		"lint": "eslint src/* --fix"
 	},
 	"dependencies": {
-		"@ceop/utils": "^1.0.3",
+		"@ceop/utils": "^1.0.4",
 		"css-loader": "^6.4.0",
 		"css-modules-typescript-loader": "^4.0.1",
 		"mini-css-extract-plugin": "^2.4.2",
@@ -30,5 +30,5 @@
 		"sass-loader": "^12.2.0",
 		"style-loader": "^3.3.0"
 	},
-	"gitHead": "bff8c05c172f2f77bee237e01259b4eae14afd3b"
+	"gitHead": "b57288938742a930f9fae3e4ce8311280eb267aa"
 }
