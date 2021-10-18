@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/cli",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "> TODO: description",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
@@ -15,7 +15,7 @@
 		"registry": "https://registry.yarnpkg.com"
 	},
 	"dependencies": {
-		"@ceop/core": "^1.0.1",
+		"@ceop/core": "^1.0.2",
 		"commander": "^8.2.0"
 	},
 	"gitHead": "fc73eeca407ad08f805a49805681ebb74bc3f962"
