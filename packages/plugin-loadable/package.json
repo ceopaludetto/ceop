@@ -24,5 +24,6 @@
 		"@ceop/utils": "^1.0.1",
 		"@loadable/babel-plugin": "^5.13.2",
 		"@loadable/webpack-plugin": "^5.15.1"
-	}
+	},
+	"gitHead": "fc73eeca407ad08f805a49805681ebb74bc3f962"
 }

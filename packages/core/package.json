@@ -45,5 +45,6 @@
 	"devDependencies": {
 		"@types/webpack-dev-server": "^4.1.0",
 		"@types/webpack-node-externals": "^2.5.2"
-	}
+	},
+	"gitHead": "fc73eeca407ad08f805a49805681ebb74bc3f962"
 }

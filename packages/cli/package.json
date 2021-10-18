@@ -17,5 +17,6 @@
 	"dependencies": {
 		"@ceop/core": "^1.0.1",
 		"commander": "^8.2.0"
-	}
+	},
+	"gitHead": "fc73eeca407ad08f805a49805681ebb74bc3f962"
 }

@@ -32,5 +32,6 @@
 		"sass": "^1.43.2",
 		"sass-loader": "^12.2.0",
 		"style-loader": "^3.3.0"
-	}
+	},
+	"gitHead": "fc73eeca407ad08f805a49805681ebb74bc3f962"
 }
