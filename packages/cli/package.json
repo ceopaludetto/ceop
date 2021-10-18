@@ -6,16 +6,16 @@
 	"homepage": "",
 	"license": "MIT",
 	"bin": {
-		"ceop": "src/index.js"
+		"ceop": "dist/index.js"
 	},
 	"files": [
-		"lib"
+		"dist"
 	],
 	"dependencies": {
 		"@ceop/core": "^1.0.7",
 		"commander": "^8.2.0"
 	},
-	"gitHead": "7ad59412f4007b1c26077eb5eaed1a79654881b2",
+	"gitHead": "b955c49c23573867f9bf9c1a197d90f423de496e",
 	"publishConfig": {
 		"access": "public"
 	}

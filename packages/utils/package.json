@@ -29,7 +29,7 @@
 		"pkg-up": "^3.1.0",
 		"yup": "^0.32.9"
 	},
-	"gitHead": "7ad59412f4007b1c26077eb5eaed1a79654881b2",
+	"gitHead": "b955c49c23573867f9bf9c1a197d90f423de496e",
 	"publishConfig": {
 		"access": "public"
 	}

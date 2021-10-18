@@ -25,6 +25,8 @@
 		"start": "lerna run start --stream --parallel",
 		"build": "lerna run build",
 		"example:both": "cd examples/both && yarn build",
-		"example:serveronly": "cd examples/serveronly && yarn build"
+		"example:serveronly": "cd examples/serveronly && yarn build",
+		"prepublish": "lerna run lint && lerna run build",
+		"publish": "lerna publish --force-publish --contents dist"
 	}
 }

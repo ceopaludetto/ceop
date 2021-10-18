@@ -5,9 +5,9 @@
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "https://github.com/ceopaludetto/ceop#readme",
 	"license": "MIT",
-	"main": "src/index.js",
+	"main": "dist/index.js",
 	"files": [
-		"src",
+		"dist",
 		"package.json"
 	],
 	"repository": {
@@ -17,7 +17,7 @@
 	"bugs": {
 		"url": "https://github.com/ceopaludetto/ceop/issues"
 	},
-	"gitHead": "7ad59412f4007b1c26077eb5eaed1a79654881b2",
+	"gitHead": "b955c49c23573867f9bf9c1a197d90f423de496e",
 	"publishConfig": {
 		"access": "public"
 	}
