@@ -15,7 +15,7 @@ program
 
 program
 	.command("build")
-	.description("Build project")
+	.description("Build project in production mode")
 	.action(async () => {
 		process.env.NODE_ENV = "production";
 		await build();
