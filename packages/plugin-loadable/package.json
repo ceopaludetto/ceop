@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/plugin-loadable",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "> TODO: description",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
@@ -18,7 +18,7 @@
 		"lint": "eslint src/* --fix"
 	},
 	"dependencies": {
-		"@ceop/utils": "^1.0.7",
+		"@ceop/utils": "^1.0.8",
 		"@loadable/babel-plugin": "^5.13.2",
 		"@loadable/webpack-plugin": "^5.15.1"
 	},
