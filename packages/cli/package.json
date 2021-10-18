@@ -6,10 +6,10 @@
 	"homepage": "",
 	"license": "MIT",
 	"bin": {
-		"ceop": "dist/index.js"
+		"ceop": "src/index.js"
 	},
 	"files": [
-		"dist"
+		"src"
 	],
 	"dependencies": {
 		"@ceop/core": "^1.0.8",

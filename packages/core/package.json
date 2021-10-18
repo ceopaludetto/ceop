@@ -43,7 +43,7 @@
 		"@types/webpack-dev-server": "^4.1.0",
 		"@types/webpack-node-externals": "^2.5.2"
 	},
-	"gitHead": "b955c49c23573867f9bf9c1a197d90f423de496e",
+	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3",
 	"publishConfig": {
 		"access": "public"
 	}
