@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/cli",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "> TODO: description",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
@@ -12,7 +12,7 @@
 		"lib"
 	],
 	"dependencies": {
-		"@ceop/core": "^1.0.2",
+		"@ceop/core": "^1.0.3",
 		"commander": "^8.2.0"
 	},
 	"gitHead": "bff8c05c172f2f77bee237e01259b4eae14afd3b"
