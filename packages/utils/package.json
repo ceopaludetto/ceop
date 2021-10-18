@@ -29,5 +29,8 @@
 		"pkg-up": "^3.1.0",
 		"yup": "^0.32.9"
 	},
-	"gitHead": "b57288938742a930f9fae3e4ce8311280eb267aa"
+	"gitHead": "39dbc256dc641012323e2505121f49d75b63fe7f",
+	"publishConfig": {
+		"access": "public"
+	}
 }

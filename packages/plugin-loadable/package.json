@@ -22,5 +22,8 @@
 		"@loadable/babel-plugin": "^5.13.2",
 		"@loadable/webpack-plugin": "^5.15.1"
 	},
-	"gitHead": "b57288938742a930f9fae3e4ce8311280eb267aa"
+	"gitHead": "39dbc256dc641012323e2505121f49d75b63fe7f",
+	"publishConfig": {
+		"access": "public"
+	}
 }
