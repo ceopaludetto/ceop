@@ -1,7 +1,7 @@
 import type { Target } from "@ceop/utils";
 import path from "path";
 
-export const tsRule = (target: Target, isDev: boolean) => ({
+export const tsRule = (target: Target, isDev: boolean, browserslist: string[]) => ({
 	test: /\.tsx?$/,
 	exclude: /node_modules/,
 	use: [
@@ -12,7 +12,7 @@ export const tsRule = (target: Target, isDev: boolean) => ({
 					[
 						require.resolve("@babel/preset-env"),
 						{
-							targets: target === "client" ? undefined : { node: "current" },
+							targets: target === "client" ? browserslist : { node: "current" },
 							useBuiltIns: "usage",
 							corejs: 3,
 						},

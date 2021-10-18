@@ -9,7 +9,15 @@ import externals from "webpack-node-externals";
 import { getEnv } from "./env";
 import { tsRule } from "./rules";
 
-export function createConfiguration(target: Target, configuration: CeopConfiguration, devPort: number): Configuration {
+export interface ConfigurationOptions {
+	browserslist: string[];
+	devPort: number;
+	target: Target;
+}
+
+export function createConfiguration(configuration: CeopConfiguration, options: ConfigurationOptions): Configuration {
+	const { target, devPort, browserslist } = options;
+
 	const entry: string[] = [];
 
 	const isDev = process.env.NODE_ENV !== "production";
@@ -64,7 +72,7 @@ export function createConfiguration(target: Target, configuration: CeopConfigura
 			},
 		},
 		module: {
-			rules: [tsRule(target, isDev)],
+			rules: [tsRule(target, isDev, browserslist)],
 		},
 		plugins: [
 			isDev && new Webpack.HotModuleReplacementPlugin(),

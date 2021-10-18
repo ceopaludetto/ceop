@@ -1,6 +1,4 @@
-import { choosePort } from "@ceop/utils";
-
-import { logger } from "./log";
+import { choosePort, logger } from "@ceop/utils";
 
 export async function parsePorts() {
 	const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;

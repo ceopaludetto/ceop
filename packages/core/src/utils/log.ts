@@ -1,9 +1,6 @@
-import { normalize, clear } from "@ceop/utils";
-import consola from "consola";
+import { normalize, clear, logger } from "@ceop/utils";
 import type { Compiler } from "webpack";
 import formatMessages, { Messages } from "webpack-format-messages";
-
-export const logger = consola;
 
 function tryPrint(messages: Messages, port: number) {
 	clear();
@@ -26,14 +23,16 @@ function tryPrint(messages: Messages, port: number) {
 	}
 }
 
-export function captureLogs(compilers: Compiler[], port: number, server = 0, filterClient = false) {
+export function captureLogs(compilers: Compiler[], port: number, server = 0) {
 	let messages: Messages = { errors: [], warnings: [] };
 	const done = compilers.map(() => false);
 
 	if (!compilers.length) return;
 	const client = normalize("src/client");
 
-	compilers[server].hooks.invalid.tap("ceop:logs", () => {
+	const key = "ceop:logs";
+
+	compilers[server].hooks.invalid.tap(key, () => {
 		clear();
 		logger.info("Compiling...");
 
@@ -42,7 +41,7 @@ export function captureLogs(compilers: Compiler[], port: number, server = 0, fil
 	});
 
 	compilers.forEach((compiler, index) => {
-		compiler.hooks.watchRun.tap("ceop:logs", (compilation) => {
+		compiler.hooks.watchRun.tap(key, (compilation) => {
 			if (compilation.modifiedFiles) {
 				const files = Array.from(compilation.modifiedFiles);
 
@@ -51,14 +50,10 @@ export function captureLogs(compilers: Compiler[], port: number, server = 0, fil
 			}
 		});
 
-		compiler.hooks.done.tap("ceop:logs", (stats) => {
+		compiler.hooks.done.tap(key, (stats) => {
 			done[index] = true;
 
 			const formattedMessages = formatMessages(stats);
-
-			if (filterClient && server === index) {
-				formattedMessages.errors = formattedMessages.errors.filter((error) => !error.includes(client));
-			}
 
 			messages.errors = [...messages.errors, ...formattedMessages.errors];
 			messages.warnings = [...messages.warnings, ...formattedMessages.warnings];

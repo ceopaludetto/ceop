@@ -1,9 +1,9 @@
-import { Target, addRule, addPlugin } from "@ceop/utils";
+import { addRule, addPlugin, Plugin } from "@ceop/utils";
 // @ts-ignore
 import MiniCssPlugin from "mini-css-extract-plugin";
-import type { Configuration, RuleSetUseItem } from "webpack";
+import type { RuleSetUseItem } from "webpack";
 
-export default function apply(configuration: Configuration, target: Target, isDev: boolean) {
+const plugin: Plugin = (configuration, { target, isDev, browserslist }) => {
 	const loaders = (modules: boolean) =>
 		[
 			isDev && target === "client" && require.resolve("style-loader"),
@@ -33,6 +33,7 @@ export default function apply(configuration: Configuration, target: Target, isDe
 								require.resolve("postcss-preset-env"),
 								{
 									stage: 3,
+									browsers: browserslist,
 								},
 							],
 						],
@@ -64,4 +65,6 @@ export default function apply(configuration: Configuration, target: Target, isDe
 	}
 
 	return configuration;
-}
+};
+
+export default plugin;

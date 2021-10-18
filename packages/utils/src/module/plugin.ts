@@ -24,12 +24,17 @@ export async function getPlugins(configuration: CeopConfiguration) {
 	return [];
 }
 
-export async function applyPlugins(ceopConfiguration: CeopConfiguration, configuration: Configuration, target: Target) {
+export async function applyPlugins(
+	ceopConfiguration: CeopConfiguration,
+	configuration: Configuration,
+	target: Target,
+	browserslist: string[],
+) {
 	const isDev = process.env.NODE_ENV !== "production";
 	const plugins = await getPlugins(ceopConfiguration);
 
 	for (const plugin of plugins) {
-		configuration = plugin(configuration, target, isDev);
+		configuration = plugin(configuration, { target, isDev, browserslist });
 	}
 
 	return configuration;

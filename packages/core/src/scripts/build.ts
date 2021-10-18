@@ -1,13 +1,20 @@
-import { applyPlugins, cleanFolder, getConfigFile } from "@ceop/utils";
+import { applyPlugins, cleanFolder, getConfigFile, logger, checkBrowsers, clear } from "@ceop/utils";
 import { webpack, Configuration } from "webpack";
 
-import { logger } from "../utils/log";
 import { createConfiguration } from "../webpack";
+
+async function attachCompileLogs(callback: () => Promise<void>) {
+	logger.info("Compiling...");
+
+	await callback();
+
+	clear();
+	logger.success("Compiled successfully");
+}
 
 export async function build() {
 	const ceopConfiguration = await getConfigFile();
 
-	logger.info("Cleaning dist folder...");
 	await cleanFolder("dist");
 
 	function compile(configuration: Configuration) {
@@ -22,19 +29,24 @@ export async function build() {
 
 	logger.trace(`Configuration mode: ${ceopConfiguration.mode}`);
 
+	const browserslist = await checkBrowsers();
 	if (ceopConfiguration.mode === "serveronly") {
-		let webpackOptions = createConfiguration("server", ceopConfiguration, 0);
+		await attachCompileLogs(async () => {
+			let webpackOptions = createConfiguration(ceopConfiguration, { target: "server", devPort: 0, browserslist });
 
-		webpackOptions = await applyPlugins(ceopConfiguration, webpackOptions, "server");
-		await compile(webpackOptions);
+			webpackOptions = await applyPlugins(ceopConfiguration, webpackOptions, "server", browserslist);
+			await compile(webpackOptions);
+		});
 	} else {
-		let clientWebpackOptions = createConfiguration("client", ceopConfiguration, 0);
-		clientWebpackOptions = await applyPlugins(ceopConfiguration, clientWebpackOptions, "client");
+		await attachCompileLogs(async () => {
+			let clientWebpackOptions = createConfiguration(ceopConfiguration, { target: "client", devPort: 0, browserslist });
+			clientWebpackOptions = await applyPlugins(ceopConfiguration, clientWebpackOptions, "client", browserslist);
 
-		let serverWebpackOptions = createConfiguration("server", ceopConfiguration, 0);
-		serverWebpackOptions = await applyPlugins(ceopConfiguration, serverWebpackOptions, "server");
+			let serverWebpackOptions = createConfiguration(ceopConfiguration, { target: "server", devPort: 0, browserslist });
+			serverWebpackOptions = await applyPlugins(ceopConfiguration, serverWebpackOptions, "server", browserslist);
 
-		await Promise.all([compile(clientWebpackOptions), compile(serverWebpackOptions)]);
+			await Promise.all([compile(clientWebpackOptions), compile(serverWebpackOptions)]);
+		});
 	}
 
 	process.exit(0);

@@ -21,11 +21,10 @@
 		"typescript": "^4.4.3"
 	},
 	"scripts": {
-		"bootstrap": "lerna bootstrap --use-workspaces",
+		"bootstrap": "lerna bootstrap",
 		"start": "lerna run start --stream --parallel",
 		"build": "lerna run build",
-		"example:both": "cd examples/both && yarn start",
-		"example:serveronly": "cd examples/serveronly && yarn start",
-		"postinstall": "lerna bootstrap --use-workspaces"
+		"example:both": "cd examples/both && yarn build",
+		"example:serveronly": "cd examples/serveronly && yarn build"
 	}
 }

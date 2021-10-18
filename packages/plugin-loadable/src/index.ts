@@ -1,13 +1,12 @@
-import { addBabelPluginsOrPresets, addPlugin, normalize, Target } from "@ceop/utils";
+import { addBabelPluginsOrPresets, addPlugin, normalize, Plugin } from "@ceop/utils";
 // @ts-ignore
 import LoadablePlugin from "@loadable/webpack-plugin";
-import type { Configuration } from "webpack";
 
 const path = normalize("dist/assets.json");
 
 process.env.CEOP_LOADABLE = path;
 
-export default function apply(configuration: Configuration, target: Target) {
+const plugin: Plugin = (configuration, { target }) => {
 	addBabelPluginsOrPresets("plugins", [require.resolve("@loadable/babel-plugin")])(configuration);
 
 	if (target === "client") {
@@ -17,4 +16,6 @@ export default function apply(configuration: Configuration, target: Target) {
 	}
 
 	return configuration;
-}
+};
+
+export default plugin;
