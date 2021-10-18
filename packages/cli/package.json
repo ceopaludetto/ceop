@@ -11,12 +11,9 @@
 	"files": [
 		"lib"
 	],
-	"publishConfig": {
-		"registry": "https://registry.yarnpkg.com"
-	},
 	"dependencies": {
 		"@ceop/core": "^1.0.2",
 		"commander": "^8.2.0"
 	},
-	"gitHead": "fc73eeca407ad08f805a49805681ebb74bc3f962"
+	"gitHead": "bff8c05c172f2f77bee237e01259b4eae14afd3b"
 }

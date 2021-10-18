@@ -12,9 +12,6 @@
 		"dist",
 		"README.md"
 	],
-	"publishConfig": {
-		"registry": "https://registry.yarnpkg.com"
-	},
 	"scripts": {
 		"start": "tsdx watch --tsconfig ./tsconfig.json",
 		"build": "tsdx build --tsconfig ./tsconfig.json",
@@ -32,5 +29,5 @@
 		"pkg-up": "^3.1.0",
 		"yup": "^0.32.9"
 	},
-	"gitHead": "fc73eeca407ad08f805a49805681ebb74bc3f962"
+	"gitHead": "bff8c05c172f2f77bee237e01259b4eae14afd3b"
 }
