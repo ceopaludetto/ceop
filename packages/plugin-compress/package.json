@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/plugin-compress",
-	"version": "1.2.6",
+	"version": "1.2.7",
 	"description": "> TODO: description",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
@@ -18,7 +18,7 @@
 		"lint": "eslint src/* --fix"
 	},
 	"dependencies": {
-		"@ceop/utils": "^1.2.6",
+		"@ceop/utils": "^1.2.7",
 		"compression-webpack-plugin": "^9.0.0"
 	},
 	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3",
