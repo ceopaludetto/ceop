@@ -44,24 +44,25 @@ const plugin: Plugin = (configuration, { target, isDev, browserslist }) => {
 			{ loader: require.resolve("sass-loader"), options: { implementation: require.resolve("sass"), sourceMap: true } },
 		].filter(Boolean) as RuleSetUseItem[];
 
-	addRule({
+	addRule(configuration, {
 		test: /\.s?css$/,
 		exclude: /\.module\.s?css$/,
 		use: loaders(false),
-	})(configuration);
+	});
 
-	addRule({
+	addRule(configuration, {
 		test: /\.module\.s?css$/,
 		use: loaders(true),
-	})(configuration);
+	});
 
 	if (target === "client" && !isDev) {
 		addPlugin(
+			configuration,
 			new MiniCssPlugin({
 				filename: "static/css/[name].css",
 				chunkFilename: "static/css/[name].chunk.css",
 			}),
-		)(configuration);
+		);
 	}
 
 	return configuration;

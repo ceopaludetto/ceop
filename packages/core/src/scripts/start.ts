@@ -38,9 +38,7 @@ export async function start() {
 
 	const browserslist = await checkBrowsers();
 	if (ceopConfiguration.mode === "serveronly") {
-		let webpackOptions = createConfiguration(ceopConfiguration, { devPort, target: "server", browserslist });
-
-		webpackOptions = await applyPlugins(ceopConfiguration, webpackOptions, "server", browserslist);
+		const webpackOptions = await createConfiguration(ceopConfiguration, { devPort, target: "server", browserslist });
 		const compiler = compile(webpackOptions);
 
 		captureLogs([compiler], port);
@@ -53,12 +51,18 @@ export async function start() {
 			});
 		});
 	} else {
-		let clientWebpackOptions = createConfiguration(ceopConfiguration, { devPort, target: "client", browserslist });
-		clientWebpackOptions = await applyPlugins(ceopConfiguration, clientWebpackOptions, "client", browserslist);
+		const clientWebpackOptions = await createConfiguration(ceopConfiguration, {
+			devPort,
+			target: "client",
+			browserslist,
+		});
 		const clientCompiler = compile(clientWebpackOptions);
 
-		let serverWebpackOptions = createConfiguration(ceopConfiguration, { devPort, target: "server", browserslist });
-		serverWebpackOptions = await applyPlugins(ceopConfiguration, serverWebpackOptions, "server", browserslist);
+		const serverWebpackOptions = await createConfiguration(ceopConfiguration, {
+			devPort,
+			target: "server",
+			browserslist,
+		});
 		const serverCompiler = compile(serverWebpackOptions);
 
 		let watching!: Watching;

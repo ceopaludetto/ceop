@@ -32,18 +32,27 @@ export async function build() {
 	const browserslist = await checkBrowsers();
 	if (ceopConfiguration.mode === "serveronly") {
 		await attachCompileLogs(async () => {
-			let webpackOptions = createConfiguration(ceopConfiguration, { target: "server", devPort: 0, browserslist });
+			const webpackOptions = await createConfiguration(ceopConfiguration, {
+				target: "server",
+				devPort: 0,
+				browserslist,
+			});
 
-			webpackOptions = await applyPlugins(ceopConfiguration, webpackOptions, "server", browserslist);
 			await compile(webpackOptions);
 		});
 	} else {
 		await attachCompileLogs(async () => {
-			let clientWebpackOptions = createConfiguration(ceopConfiguration, { target: "client", devPort: 0, browserslist });
-			clientWebpackOptions = await applyPlugins(ceopConfiguration, clientWebpackOptions, "client", browserslist);
+			const clientWebpackOptions = await createConfiguration(ceopConfiguration, {
+				target: "client",
+				devPort: 0,
+				browserslist,
+			});
 
-			let serverWebpackOptions = createConfiguration(ceopConfiguration, { target: "server", devPort: 0, browserslist });
-			serverWebpackOptions = await applyPlugins(ceopConfiguration, serverWebpackOptions, "server", browserslist);
+			const serverWebpackOptions = await createConfiguration(ceopConfiguration, {
+				target: "server",
+				devPort: 0,
+				browserslist,
+			});
 
 			await Promise.all([compile(clientWebpackOptions), compile(serverWebpackOptions)]);
 		});

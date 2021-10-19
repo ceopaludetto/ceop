@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { CeopConfiguration, Target, normalize, context } from "@ceop/utils";
+import { CeopConfiguration, Target, normalize, context, applyPlugins } from "@ceop/utils";
 // @ts-ignore
 import StartServerPlugin from "razzle-start-server-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
@@ -15,7 +15,10 @@ export interface ConfigurationOptions {
 	target: Target;
 }
 
-export function createConfiguration(configuration: CeopConfiguration, options: ConfigurationOptions): Configuration {
+export async function createConfiguration(
+	configuration: CeopConfiguration,
+	options: ConfigurationOptions,
+): Promise<Configuration> {
 	const { target, devPort, browserslist } = options;
 
 	const entry: string[] = [];
@@ -43,7 +46,7 @@ export function createConfiguration(configuration: CeopConfiguration, options: C
 
 	const env = getEnv();
 
-	return {
+	let webpackConfiguration: Configuration = {
 		mode: isDev ? "development" : "production",
 		target: isServer ? "node" : "web",
 		bail: !isDev,
@@ -108,4 +111,7 @@ export function createConfiguration(configuration: CeopConfiguration, options: C
 				  }
 				: undefined,
 	};
+
+	webpackConfiguration = await applyPlugins(configuration, webpackConfiguration, target, browserslist);
+	return webpackConfiguration;
 }

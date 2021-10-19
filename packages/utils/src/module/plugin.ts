@@ -13,7 +13,11 @@ export async function getPlugins(configuration: CeopConfiguration) {
 				}
 
 				if (!(await exists(plugin))) {
-					throw new Error(`Plugin ${plugin} not found`);
+					try {
+						return await resolve<Plugin>(plugin);
+					} catch (error) {
+						throw new Error(`Plugin ${plugin} not found`);
+					}
 				}
 
 				return resolve<Plugin>(plugin);
