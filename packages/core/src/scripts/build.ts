@@ -29,10 +29,13 @@ export async function build() {
 
 	logger.trace(`Configuration mode: ${ceopConfiguration.mode}`);
 
+	const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+
 	const browserslist = await checkBrowsers();
 	if (ceopConfiguration.mode === "serveronly") {
 		await attachCompileLogs(async () => {
 			const webpackOptions = await createConfiguration(ceopConfiguration, {
+				port,
 				target: "server",
 				devPort: 0,
 				browserslist,
@@ -43,12 +46,14 @@ export async function build() {
 	} else {
 		await attachCompileLogs(async () => {
 			const clientWebpackOptions = await createConfiguration(ceopConfiguration, {
+				port,
 				target: "client",
 				devPort: 0,
 				browserslist,
 			});
 
 			const serverWebpackOptions = await createConfiguration(ceopConfiguration, {
+				port,
 				target: "server",
 				devPort: 0,
 				browserslist,

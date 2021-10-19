@@ -12,6 +12,7 @@ import { tsRule } from "./rules";
 export interface ConfigurationOptions {
 	browserslist: string[];
 	devPort: number;
+	port: number;
 	target: Target;
 }
 
@@ -19,7 +20,7 @@ export async function createConfiguration(
 	configuration: CeopConfiguration,
 	options: ConfigurationOptions,
 ): Promise<Configuration> {
-	const { target, devPort, browserslist } = options;
+	const { target, devPort, port, browserslist } = options;
 
 	const entry: string[] = [];
 
@@ -32,8 +33,8 @@ export async function createConfiguration(
 	}
 
 	if (configuration.mode === "both") {
-		if (isClient) entry.push(normalize("src/client/index.tsx"));
-		if (isServer) entry.push(normalize("src/server/index.ts"));
+		if (isClient) entry.push(normalize(configuration.entry.client));
+		if (isServer) entry.push(normalize(configuration.entry.server));
 
 		if (isServer && isDev) {
 			entry.unshift(`${require.resolve("webpack/hot/poll")}?300`);
@@ -89,7 +90,13 @@ export async function createConfiguration(
 					debug: false,
 					inject: false,
 				}),
-			new Webpack.DefinePlugin(env),
+			!isDev && isClient && new Webpack.optimize.AggressiveMergingPlugin(),
+			!isDev &&
+				isServer &&
+				new Webpack.optimize.LimitChunkCountPlugin({
+					maxChunks: 1,
+				}),
+			new Webpack.DefinePlugin({ PORT: port, ...env }),
 		].filter(Boolean) as any,
 		resolve: {
 			extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -112,6 +119,6 @@ export async function createConfiguration(
 				: undefined,
 	};
 
-	webpackConfiguration = await applyPlugins(configuration, webpackConfiguration, target, browserslist);
+	webpackConfiguration = await applyPlugins(configuration, webpackConfiguration, { target, browserslist, isDev });
 	return webpackConfiguration;
 }

@@ -7,8 +7,8 @@ const plugin: Plugin = (configuration, { target, isDev, browserslist }) => {
 	const loaders = (modules: boolean) =>
 		[
 			isDev && target === "client" && require.resolve("style-loader"),
-			!isDev && target === "client" && MiniCssPlugin.loader,
 			modules && target === "client" && require.resolve("css-modules-typescript-loader"),
+			!isDev && target === "client" && MiniCssPlugin.loader,
 			{
 				loader: require.resolve("css-loader"),
 				options: {

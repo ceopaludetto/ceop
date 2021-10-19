@@ -4,7 +4,7 @@ import { app } from "./server";
 const server = http.createServer(app);
 let curr = app;
 
-server.listen(3000, () => console.log("started"));
+server.listen(process.env.PORT || 3000, () => console.log("started"));
 
 if (module.hot) {
 	module.hot.accept("./server", () => {

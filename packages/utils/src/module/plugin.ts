@@ -1,7 +1,7 @@
 import type { Configuration } from "webpack";
 
 import type { CeopConfiguration } from "../helpers/validation";
-import type { Plugin, Target } from "../types";
+import type { Plugin, PluginOptions } from "../types";
 import { resolve } from "./path";
 
 export async function getPlugins(configuration: CeopConfiguration) {
@@ -27,14 +27,12 @@ export async function getPlugins(configuration: CeopConfiguration) {
 export async function applyPlugins(
 	ceopConfiguration: CeopConfiguration,
 	configuration: Configuration,
-	target: Target,
-	browserslist: string[],
+	options: PluginOptions,
 ) {
-	const isDev = process.env.NODE_ENV !== "production";
 	const plugins = await getPlugins(ceopConfiguration);
 
 	for (const plugin of plugins) {
-		configuration = plugin(configuration, { target, isDev, browserslist });
+		configuration = plugin(configuration, options);
 	}
 
 	return configuration;
