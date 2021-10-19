@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+if ! command -v yarn &> /dev/null
+then
+    exec < /dev/tty && npm run cz --hook || true
+    exit
+fi
+
+exec < /dev/tty && yarn cz --hook || true

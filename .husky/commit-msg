@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+if ! command -v yarn &> /dev/null
+then
+    npm --no-install commitlint --edit "$1"
+    exit
+fi
+
+yarn commitlint --edit "$1"
