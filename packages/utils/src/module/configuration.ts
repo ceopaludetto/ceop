@@ -1,6 +1,6 @@
 import { CONFIGURATION_FILES } from "../constants";
 import { CeopConfiguration, validationSchema } from "../helpers/validation";
-import { exists, resolve } from "./path";
+import { exists, resolve, normalize } from "./path";
 
 export async function hasConfigFile() {
 	const files = await Promise.all(CONFIGURATION_FILES.map(async (file) => exists(file)));
@@ -22,7 +22,12 @@ export async function hasConfigFile() {
 
 export async function getConfigFile(): Promise<CeopConfiguration> {
 	const file = await hasConfigFile();
-	if (!file) return { mode: "both", plugins: [] };
+	if (!file)
+		return {
+			mode: "both",
+			plugins: [],
+			entry: { client: normalize("src/client/index.tsx"), server: normalize("src/server/index.ts") },
+		};
 
 	try {
 		const configuration = await resolve(file);

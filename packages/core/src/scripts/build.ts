@@ -1,4 +1,4 @@
-import { cleanFolder, getConfigFile, logger, checkBrowsers, clear } from "@ceop/utils";
+import { cleanFolder, getConfigFile, logger, checkBrowsers } from "@ceop/utils";
 import { webpack, Configuration } from "webpack";
 
 import { createConfiguration } from "../webpack";
@@ -8,7 +8,6 @@ async function attachCompileLogs(callback: () => Promise<void>) {
 
 	await callback();
 
-	clear();
 	logger.success("Compiled successfully");
 }
 

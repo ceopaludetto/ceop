@@ -2,6 +2,7 @@
 import { CeopConfiguration, Target, normalize, context, applyPlugins } from "@ceop/utils";
 // @ts-ignore
 import StartServerPlugin from "razzle-start-server-webpack-plugin";
+import TerserWebpackPlugin from "terser-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import Webpack, { Configuration } from "webpack";
 import externals from "webpack-node-externals";
@@ -60,6 +61,20 @@ export async function createConfiguration(
 		infrastructureLogging: {
 			level: "none",
 		},
+		optimization: {
+			minimize: !isDev,
+			minimizer: [
+				new TerserWebpackPlugin({
+					parallel: true,
+					terserOptions: {
+						toplevel: true,
+						format: {
+							comments: false,
+						},
+					},
+				}),
+			],
+		},
 		output: {
 			path: outputPath,
 			publicPath,
@@ -96,7 +111,7 @@ export async function createConfiguration(
 				new Webpack.optimize.LimitChunkCountPlugin({
 					maxChunks: 1,
 				}),
-			new Webpack.DefinePlugin({ PORT: port, ...env }),
+			new Webpack.EnvironmentPlugin({ PORT: port, ...env }),
 		].filter(Boolean) as any,
 		resolve: {
 			extensions: [".js", ".jsx", ".ts", ".tsx"],

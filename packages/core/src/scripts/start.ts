@@ -36,6 +36,8 @@ export async function start() {
 
 	const { port, devPort } = await parsePorts();
 
+	logger.info("Compiling...");
+
 	const browserslist = await checkBrowsers();
 	if (ceopConfiguration.mode === "serveronly") {
 		const webpackOptions = await createConfiguration(ceopConfiguration, {

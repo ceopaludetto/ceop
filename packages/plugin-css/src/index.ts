@@ -1,4 +1,6 @@
-import { addRule, addPlugin, Plugin } from "@ceop/utils";
+import { addRule, addPlugin, addOptimization, Plugin } from "@ceop/utils";
+// @ts-ignore
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 // @ts-ignore
 import MiniCssPlugin from "mini-css-extract-plugin";
 import type { RuleSetUseItem } from "webpack";
@@ -7,8 +9,8 @@ const plugin: Plugin = (configuration, { target, isDev, browserslist }) => {
 	const loaders = (modules: boolean) =>
 		[
 			isDev && target === "client" && require.resolve("style-loader"),
-			modules && target === "client" && require.resolve("css-modules-typescript-loader"),
 			!isDev && target === "client" && MiniCssPlugin.loader,
+			modules && target === "client" && require.resolve("css-modules-typescript-loader"),
 			{
 				loader: require.resolve("css-loader"),
 				options: {
@@ -34,24 +36,25 @@ const plugin: Plugin = (configuration, { target, isDev, browserslist }) => {
 								{
 									stage: 3,
 									browsers: browserslist,
+									features: {
+										"nesting-rules": true,
+									},
 								},
 							],
 						],
 					},
 				},
 			},
-			{ loader: require.resolve("resolve-url-loader"), options: { sourceMap: isDev } },
-			{ loader: require.resolve("sass-loader"), options: { implementation: require.resolve("sass"), sourceMap: true } },
 		].filter(Boolean) as RuleSetUseItem[];
 
 	addRule(configuration, {
-		test: /\.s?css$/,
-		exclude: /\.module\.s?css$/,
+		test: /\.css$/,
+		exclude: /\.module\.css$/,
 		use: loaders(false),
 	});
 
 	addRule(configuration, {
-		test: /\.module\.s?css$/,
+		test: /\.module\.css$/,
 		use: loaders(true),
 	});
 
@@ -64,6 +67,21 @@ const plugin: Plugin = (configuration, { target, isDev, browserslist }) => {
 			}),
 		);
 	}
+
+	addOptimization(
+		configuration,
+		new CssMinimizerPlugin({
+			parallel: true,
+			minimizerOptions: {
+				preset: [
+					"default",
+					{
+						discardComments: { removeAll: true },
+					},
+				],
+			},
+		}),
+	);
 
 	return configuration;
 };

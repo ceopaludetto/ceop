@@ -1,4 +1,4 @@
-import { normalize, clear, logger } from "@ceop/utils";
+import { clear, logger } from "@ceop/utils";
 import type { Compiler } from "webpack";
 import formatMessages, { Messages } from "webpack-format-messages";
 
@@ -28,7 +28,6 @@ export function captureLogs(compilers: Compiler[], port: number, server = 0) {
 	const done = compilers.map(() => false);
 
 	if (!compilers.length) return;
-	const client = normalize("src/client");
 
 	const key = "ceop:logs";
 
@@ -41,15 +40,6 @@ export function captureLogs(compilers: Compiler[], port: number, server = 0) {
 	});
 
 	compilers.forEach((compiler, index) => {
-		compiler.hooks.watchRun.tap(key, (compilation) => {
-			if (compilation.modifiedFiles) {
-				const files = Array.from(compilation.modifiedFiles);
-
-				if (files.includes(client)) return;
-				done.fill(true);
-			}
-		});
-
 		compiler.hooks.done.tap(key, (stats) => {
 			done[index] = true;
 
