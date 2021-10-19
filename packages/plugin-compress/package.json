@@ -1,12 +1,12 @@
 {
-	"name": "@ceop/plugin-loadable",
+	"name": "@ceop/plugin-compress",
 	"version": "1.2.0",
 	"description": "> TODO: description",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
 	"license": "MIT",
 	"main": "dist/index.js",
-	"module": "dist/plugin-loadable.esm.js",
+	"module": "dist/plugin-css.esm.js",
 	"typings": "dist/index.d.ts",
 	"files": [
 		"dist",
@@ -19,11 +19,13 @@
 	},
 	"dependencies": {
 		"@ceop/utils": "^1.2.0",
-		"@loadable/babel-plugin": "^5.13.2",
-		"@loadable/webpack-plugin": "^5.15.1"
+		"compression-webpack-plugin": "^9.0.0"
 	},
 	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3",
 	"publishConfig": {
 		"access": "public"
+	},
+	"devDependencies": {
+		"@types/compression-webpack-plugin": "^9.0.0"
 	}
 }
