@@ -36,7 +36,7 @@
 		"example:both": "cd examples/both && yarn start",
 		"example:serveronly": "cd examples/serveronly && yarn start",
 		"prepublish": "lerna run lint && lerna run build",
-		"publish": "lerna publish --force-publish"
+		"publish": "lerna publish --force-publish --conventional-commits"
 	},
 	"changelog": {
 		"labels": {
