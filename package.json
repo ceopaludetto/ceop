@@ -24,8 +24,8 @@
 		"bootstrap": "lerna bootstrap",
 		"start": "lerna run start --stream --parallel",
 		"build": "lerna run build",
-		"example:both": "cd examples/both && yarn build",
-		"example:serveronly": "cd examples/serveronly && yarn build",
+		"example:both": "cd examples/both && yarn start",
+		"example:serveronly": "cd examples/serveronly && yarn start",
 		"prepublish": "lerna run lint && lerna run build",
 		"publish": "lerna publish --force-publish"
 	}

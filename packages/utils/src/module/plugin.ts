@@ -2,7 +2,7 @@ import type { Configuration } from "webpack";
 
 import type { CeopConfiguration } from "../helpers/validation";
 import type { Plugin, Target } from "../types";
-import { resolve, exists } from "./path";
+import { resolve } from "./path";
 
 export async function getPlugins(configuration: CeopConfiguration) {
 	if (configuration?.plugins?.length) {
@@ -12,15 +12,11 @@ export async function getPlugins(configuration: CeopConfiguration) {
 					return plugin;
 				}
 
-				if (!(await exists(plugin))) {
-					try {
-						return await resolve<Plugin>(plugin);
-					} catch (error) {
-						throw new Error(`Plugin ${plugin} not found`);
-					}
+				try {
+					return await resolve<Plugin>(plugin);
+				} catch (error) {
+					throw new Error(`Plugin ${plugin} not found`);
 				}
-
-				return resolve<Plugin>(plugin);
 			}),
 		);
 	}

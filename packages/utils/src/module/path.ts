@@ -20,7 +20,7 @@ export async function exists(file: string) {
 }
 
 export async function resolve<T = any>(file: string) {
-	const m = await import(normalize(file));
+	const m = await import(file);
 
 	if (m.default) return m.default as Promise<T>;
 	return m as Promise<T>;

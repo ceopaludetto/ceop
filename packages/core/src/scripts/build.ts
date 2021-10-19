@@ -1,4 +1,4 @@
-import { applyPlugins, cleanFolder, getConfigFile, logger, checkBrowsers, clear } from "@ceop/utils";
+import { cleanFolder, getConfigFile, logger, checkBrowsers, clear } from "@ceop/utils";
 import { webpack, Configuration } from "webpack";
 
 import { createConfiguration } from "../webpack";
