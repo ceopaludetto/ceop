@@ -7,19 +7,18 @@ function tryPrint(messages: Messages, port: number) {
 
 	if (!messages.errors.length && !messages.warnings.length) {
 		logger.success("Compiled successfully!");
-		console.log();
-		logger.log(`Server is running in port ${port}`);
+		logger.log(`\nServer is running in port ${port}`);
 	}
 
 	if (messages.errors.length) {
 		logger.error("Failed to compile");
-		messages.errors.forEach((e) => console.error(e));
+		messages.errors.forEach((e) => logger.log(e));
 		return;
 	}
 
 	if (messages.warnings.length) {
 		logger.warn("Compiled with warnings");
-		messages.warnings.forEach((e) => console.warn(e));
+		messages.warnings.forEach((e) => logger.log(e));
 	}
 }
 

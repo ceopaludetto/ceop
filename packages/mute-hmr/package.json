@@ -2,23 +2,26 @@
 	"name": "@ceop/mute-hmr",
 	"version": "1.2.6",
 	"description": "> TODO: description",
-	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "https://github.com/ceopaludetto/ceop#readme",
+	"bugs": {
+		"url": "https://github.com/ceopaludetto/ceop/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ceopaludetto/ceop.git"
+	},
 	"license": "MIT",
+	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"main": "src/index.js",
 	"files": [
 		"src",
 		"package.json"
 	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ceopaludetto/ceop.git"
+	"dependencies": {
+		"webpack": "^5.60.0"
 	},
-	"bugs": {
-		"url": "https://github.com/ceopaludetto/ceop/issues"
-	},
-	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3",
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3"
 }

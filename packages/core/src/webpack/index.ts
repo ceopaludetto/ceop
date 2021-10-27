@@ -117,21 +117,6 @@ export async function createConfiguration(
 			extensions: [".js", ".jsx", ".ts", ".tsx"],
 			plugins: [new TsconfigPathsPlugin({ configFile: normalize("tsconfig.json") })],
 		},
-		devServer:
-			isClient && isDev
-				? {
-						compress: true,
-						headers: { "Access-Control-Allow-Origin": "*" },
-						hot: true,
-						port: devPort,
-						client: {
-							logging: "none",
-						},
-						historyApiFallback: {
-							disableDotRule: true,
-						},
-				  }
-				: undefined,
 	};
 
 	webpackConfiguration = await applyPlugins(configuration, webpackConfiguration, { target, browserslist, isDev });

@@ -1,6 +1,6 @@
 import type { Configuration } from "webpack";
 
-import { addRule, addPlugin } from "../../src/helpers/webpack";
+import { addRule, addPlugin, addOptimization } from "../../src/helpers/webpack";
 
 describe("addRule", () => {
 	it("should ignores if rule array does not exists", () => {
@@ -17,6 +17,34 @@ describe("addRule", () => {
 		expect(configuration).toStrictEqual({
 			module: { rules: [{ loader: "test-loader" }] },
 		});
+	});
+});
+
+describe("addOptimization", () => {
+	it("should ignores if minimizer array does not exists", () => {
+		const configuration: Configuration = {};
+
+		class Test {
+			public apply() {}
+		}
+
+		addOptimization(configuration, new Test());
+		expect(configuration).toStrictEqual({});
+	});
+
+	it("should add a minimizer to webpack if plugin array exists", () => {
+		const configuration: Configuration = {
+			optimization: {
+				minimizer: [],
+			},
+		};
+
+		class Test {
+			public apply() {}
+		}
+
+		addOptimization(configuration, new Test());
+		expect(configuration).toStrictEqual({ optimization: { minimizer: [new Test()] } });
 	});
 });
 

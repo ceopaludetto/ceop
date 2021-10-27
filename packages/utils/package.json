@@ -2,9 +2,9 @@
 	"name": "@ceop/utils",
 	"version": "1.2.6",
 	"description": "> TODO: description",
-	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
 	"license": "MIT",
+	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"main": "dist/index.js",
 	"module": "dist/utils.esm.js",
 	"typings": "dist/index.d.ts",
@@ -13,14 +13,10 @@
 		"README.md"
 	],
 	"scripts": {
-		"start": "tsdx watch --tsconfig ./tsconfig.json",
 		"build": "tsdx build --tsconfig ./tsconfig.json",
-		"test": "tsdx test",
-		"lint": "eslint src/* --fix"
-	},
-	"devDependencies": {
-		"@types/fs-extra": "^9.0.13",
-		"webpack": "^5.53.0"
+		"lint": "eslint src/* --fix",
+		"start": "tsdx watch --tsconfig ./tsconfig.json",
+		"test": "tsdx test"
 	},
 	"dependencies": {
 		"browserslist": "^4.17.4",
@@ -30,8 +26,12 @@
 		"pkg-up": "^3.1.0",
 		"yup": "^0.32.9"
 	},
-	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3",
+	"devDependencies": {
+		"@types/fs-extra": "^9.0.13",
+		"webpack": "^5.60.0"
+	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3"
 }

@@ -1,12 +1,21 @@
 {
 	"name": "root",
 	"private": true,
-	"workspaces": [
-		"packages/*"
-	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ceopaludetto/ceop"
+	},
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"bootstrap": "lerna bootstrap",
+		"build": "lerna run build",
+		"prepare": "husky install",
+		"prepublish": "lerna run lint && lerna run test && lerna run build",
+		"publish": "lerna publish",
+		"start": "lerna run start --stream --parallel",
+		"test": "lerna run test"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^13.2.1",
@@ -22,21 +31,11 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"husky": "^7.0.2",
 		"lerna": "^4.0.0",
-		"lerna-changelog": "^2.2.0",
 		"prettier": "^2.4.1",
+		"prettier-plugin-packagejson": "^2.2.13",
 		"tsdx": "^0.14.1",
 		"tslib": "^2.3.1",
 		"typescript": "^4.4.3"
-	},
-	"scripts": {
-		"prepare": "husky install",
-		"bootstrap": "lerna bootstrap",
-		"start": "lerna run start --stream --parallel",
-		"build": "lerna run build",
-		"example:both": "cd examples/both && yarn start",
-		"example:serveronly": "cd examples/serveronly && yarn start",
-		"prepublish": "lerna run lint && lerna run build",
-		"publish": "lerna publish --force-publish --conventional-commits"
 	},
 	"changelog": {
 		"labels": {
