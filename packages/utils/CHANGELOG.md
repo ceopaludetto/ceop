@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.9](https://github.com/ceopaludetto/ceop/compare/@ceop/utils@1.2.8...@ceop/utils@1.2.9) (2021-10-28)
+
+
+### Bug Fixes
+
+* babel-loader not found issue ([1ba4a82](https://github.com/ceopaludetto/ceop/commit/1ba4a820f4a7ea63242a428a478ead714165fe4c))
+
+
+
+
+
 ## [1.2.8](https://github.com/ceopaludetto/ceop/compare/@ceop/utils@1.2.7...@ceop/utils@1.2.8) (2021-10-28)
 
 
