@@ -1,9 +1,10 @@
 import { addPlugin, Plugin } from "@ceop/utils";
+// @ts-ignore
 import CompressionWebpackPlugin from "compression-webpack-plugin";
 import zlib from "zlib";
 
-const plugin: Plugin = (configuration, { target }) => {
-	if (target === "client") {
+const plugin: Plugin = (configuration, { target, isDev }) => {
+	if (target === "client" && !isDev) {
 		addPlugin(
 			configuration,
 			new CompressionWebpackPlugin({

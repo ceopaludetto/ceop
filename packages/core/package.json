@@ -2,9 +2,9 @@
 	"name": "@ceop/core",
 	"version": "1.2.7",
 	"description": "> TODO: description",
-	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"homepage": "",
 	"license": "MIT",
+	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"main": "dist/index.js",
 	"module": "dist/core.esm.js",
 	"typings": "dist/index.d.ts",
@@ -13,9 +13,9 @@
 		"README.md"
 	],
 	"scripts": {
-		"start": "tsdx watch --tsconfig ./tsconfig.json",
 		"build": "tsdx build --tsconfig ./tsconfig.json",
-		"lint": "eslint src/* --fix"
+		"lint": "eslint src/* --fix",
+		"start": "tsdx watch --tsconfig ./tsconfig.json"
 	},
 	"dependencies": {
 		"@babel/core": "^7.15.8",
@@ -35,17 +35,16 @@
 		"razzle-start-server-webpack-plugin": "^4.2.1",
 		"terser-webpack-plugin": "^5.2.4",
 		"tsconfig-paths-webpack-plugin": "^3.5.1",
-		"webpack": "^5.53.0",
+		"webpack": "^5.60.0",
 		"webpack-dev-server": "^4.2.1",
 		"webpack-format-messages": "^3.0.1",
 		"webpack-node-externals": "^3.0.0"
 	},
 	"devDependencies": {
-		"@types/webpack-dev-server": "^4.1.0",
 		"@types/webpack-node-externals": "^2.5.2"
 	},
-	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3",
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "b8dd93fc374a2efa2d4a991f48a574e046a996b3"
 }

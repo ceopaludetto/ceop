@@ -19,11 +19,26 @@ export function findRuleByRegex(c: Configuration, regex: string, callback: (rule
 export function addBabelPluginsOrPresets(c: Configuration, type: "plugins" | "presets", add: BabelPlugins) {
 	findRuleByRegex(c, "tsx?", (rule) => {
 		if (rule?.use && Array.isArray(rule.use)) {
-			if (typeof rule.use[0] === "object") {
-				const options = typeof rule.use[0]?.options === "object" ? rule.use[0]?.options : {};
+			const index = rule.use.findIndex((use) => {
+				if (typeof use === "string") {
+					return use === "babel-loader";
+				}
 
-				rule.use[0] = {
-					...rule?.use[0],
+				if (typeof use === "object") {
+					return use.loader === "babel-loader";
+				}
+
+				return false;
+			});
+
+			if (index < 0) throw new Error("babel-loader not found");
+
+			const loader = rule.use[index];
+			if (typeof loader === "object") {
+				const options = typeof loader?.options === "object" ? loader?.options : {};
+
+				rule.use[index] = {
+					...loader,
 					options: {
 						...options,
 						plugins: [...(options?.plugins ?? []), ...(type === "plugins" ? add : [])],

@@ -1,5 +1,6 @@
 import { getConfigFile, cleanFolder, logger, checkBrowsers } from "@ceop/utils";
 import { webpack, Watching, Configuration, Compiler } from "webpack";
+// @ts-ignore
 import DevServer from "webpack-dev-server";
 
 import { captureLogs } from "../utils/log";
@@ -14,11 +15,11 @@ function compile(configuration: Configuration) {
 	} catch (err) {
 		logger.error("Failed to compile");
 		if ((err as any).message) {
-			console.error((err as any).message);
+			logger.log((err as any).message);
 		}
-		console.error((err as any).stack || err);
+		logger.log((err as any).stack || err);
 		if ((err as any).details) {
-			console.error((err as any).details);
+			logger.log((err as any).details);
 		}
 
 		process.exit(1);
@@ -82,7 +83,21 @@ export async function start() {
 			if (!watching) watching = serverCompiler.watch({}, () => {});
 		});
 
-		const devServer = new DevServer(clientWebpackOptions?.devServer ?? {}, clientCompiler);
+		const devServer = new DevServer(
+			{
+				compress: true,
+				headers: { "Access-Control-Allow-Origin": "*" },
+				hot: true,
+				port: devPort,
+				client: {
+					logging: "none",
+				},
+				historyApiFallback: {
+					disableDotRule: true,
+				},
+			},
+			clientCompiler,
+		);
 
 		devServer.start();
 
