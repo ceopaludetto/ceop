@@ -14,18 +14,19 @@ export function findRuleByRegex(c: Configuration, regex: string, callback: (rule
 			return rule;
 		});
 	}
+	return c;
 }
 
 export function addBabelPluginsOrPresets(c: Configuration, type: "plugins" | "presets", add: BabelPlugins) {
-	findRuleByRegex(c, "tsx?", (rule) => {
+	return findRuleByRegex(c, "tsx?", (rule) => {
 		if (rule?.use && Array.isArray(rule.use)) {
 			const index = rule.use.findIndex((use) => {
 				if (typeof use === "string") {
-					return use === "babel-loader";
+					return use.includes("babel-loader");
 				}
 
 				if (typeof use === "object") {
-					return use.loader === "babel-loader";
+					return use.loader?.includes("babel-loader");
 				}
 
 				return false;
@@ -46,6 +47,16 @@ export function addBabelPluginsOrPresets(c: Configuration, type: "plugins" | "pr
 					},
 				};
 			}
+
+			if (typeof loader === "string") {
+				rule.use[index] = {
+					loader,
+					options: {
+						plugins: [...(type === "plugins" ? add : [])],
+						presets: [...(type === "presets" ? add : [])],
+					},
+				};
+			}
 		}
 
 		return rule;
@@ -54,12 +65,15 @@ export function addBabelPluginsOrPresets(c: Configuration, type: "plugins" | "pr
 
 export function addRule(c: Configuration, rule: RuleSetRule) {
 	c.module?.rules?.push(rule);
+	return c;
 }
 
 export function addPlugin(c: Configuration, plugin: WebpackPluginInstance) {
 	c.plugins?.push(plugin);
+	return c;
 }
 
 export function addOptimization(c: Configuration, plugin: WebpackPluginInstance) {
 	c.optimization?.minimizer?.push(plugin);
+	return c;
 }

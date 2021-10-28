@@ -1,6 +1,6 @@
 import type { Configuration } from "webpack";
 
-import { addRule, addPlugin, addOptimization } from "../../src/helpers/webpack";
+import { addRule, addPlugin, addOptimization, addBabelPluginsOrPresets } from "../../src/helpers/webpack";
 
 describe("addRule", () => {
 	it("should ignores if rule array does not exists", () => {
@@ -71,5 +71,50 @@ describe("addPlugin", () => {
 
 		addPlugin(configuration, new Test());
 		expect(configuration).toStrictEqual({ plugins: [new Test()] });
+	});
+});
+
+describe("addBabelPluginsOrPresets", () => {
+	it("should do nothing when no .tsx? is found", () => {
+		const configuration: Configuration = { module: { rules: [] } };
+
+		addBabelPluginsOrPresets(configuration, "plugins", []);
+		expect(configuration).toStrictEqual({ module: { rules: [] } });
+	});
+
+	it("should throw when .tsx? is found but babel-loader isn't", () => {
+		const configuration: Configuration = { module: { rules: [{ test: /\.tsx?$/, use: [] }] } };
+
+		try {
+			addBabelPluginsOrPresets(configuration, "plugins", []);
+		} catch (error) {
+			expect(error).toBeInstanceOf(Error);
+		}
+	});
+
+	it("should add plugin or preset if babel rule is plain", () => {
+		const configuration: Configuration = { module: { rules: [{ test: /\.tsx?$/, use: ["babel-loader"] }] } };
+
+		addBabelPluginsOrPresets(configuration, "plugins", ["test"]);
+		expect(configuration).toStrictEqual({
+			module: {
+				rules: [{ test: /\.tsx?$/, use: [{ loader: "babel-loader", options: { plugins: ["test"], presets: [] } }] }],
+			},
+		});
+	});
+
+	it("should add plugin or preset if babel rule is object", () => {
+		const configuration: Configuration = {
+			module: {
+				rules: [{ test: /\.tsx?$/, use: [{ loader: "babel-loader", options: { presets: [], plugins: [] } }] }],
+			},
+		};
+
+		addBabelPluginsOrPresets(configuration, "plugins", ["test"]);
+		expect(configuration).toStrictEqual({
+			module: {
+				rules: [{ test: /\.tsx?$/, use: [{ loader: "babel-loader", options: { plugins: ["test"], presets: [] } }] }],
+			},
+		});
 	});
 });
