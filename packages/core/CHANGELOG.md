@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.2.9...@ceop/core@1.3.0) (2021-10-29)
+
+
+### Features
+
+* move from file-loader to asset module webpack 5 feature ([3e3ce5b](https://github.com/ceopaludetto/ceop/commit/3e3ce5b00cec8211acb0bfebb66353d8551d2548))
+
+
+
+
+
 ## [1.2.9](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.2.8...@ceop/core@1.2.9) (2021-10-28)
 
 **Note:** Version bump only for package @ceop/core

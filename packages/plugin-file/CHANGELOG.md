@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-file@1.1.1...@ceop/plugin-file@1.2.0) (2021-10-29)
+
+
+### Bug Fixes
+
+* **plugin-file:** tests ([e4167c6](https://github.com/ceopaludetto/ceop/commit/e4167c6b9e90df3cf327953a1dd0704f2ef77a02))
+
+
+### Features
+
+* move from file-loader to asset module webpack 5 feature ([3e3ce5b](https://github.com/ceopaludetto/ceop/commit/3e3ce5b00cec8211acb0bfebb66353d8551d2548))
+
+
+
+
+
 ## [1.1.1](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-file@1.1.0...@ceop/plugin-file@1.1.1) (2021-10-29)
 
 
