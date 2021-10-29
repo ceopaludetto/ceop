@@ -1,0 +1,31 @@
+{
+	"name": "@ceop/plugin-file",
+	"version": "1.0.0",
+	"description": "> TODO: description",
+	"homepage": "",
+	"license": "MIT",
+	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
+	"main": "dist/index.js",
+	"module": "dist/plugin-file.esm.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsdx build --tsconfig ./tsconfig.json",
+		"lint": "eslint src/* --fix",
+		"start": "tsdx watch --tsconfig ./tsconfig.json",
+		"test": "tsdx test"
+	},
+	"dependencies": {
+		"@ceop/utils": "^1.2.9",
+		"file-loader": "^6.2.0"
+	},
+	"devDependencies": {
+		"webpack": "^5.60.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
