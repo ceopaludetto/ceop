@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-file@1.1.0...@ceop/plugin-file@1.1.1) (2021-10-29)
+
+
+### Bug Fixes
+
+* file-loader should be the first loader ([f9b165c](https://github.com/ceopaludetto/ceop/commit/f9b165c40cc90ca34ea0491f015ef232adf327fc))
+
+
+
+
+
 # 1.1.0 (2021-10-29)
 
 
