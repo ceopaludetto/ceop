@@ -1,7 +1,7 @@
 import type { Plugin } from "@ceop/utils";
 import type { RuleSetRule } from "webpack-node-externals/node_modules/webpack";
 
-const plugin: Plugin = (configuration, { target, isDev }) => {
+const plugin: Plugin = (configuration, { target }) => {
 	if (configuration.module?.rules) {
 		const { rules } = configuration.module;
 
