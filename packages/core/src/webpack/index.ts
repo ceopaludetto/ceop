@@ -85,6 +85,7 @@ export async function createConfiguration(
 					? "static/js/[name].chunk.js"
 					: "static/js/[name].[contenthash:8].chunk.js"
 				: "[name].chunk.js",
+			assetModuleFilename: isDev ? "static/media/[name].[ext]" : "static/media/[name].[contenthash:8].[ext]",
 			library: {
 				type: isServer ? "commonjs2" : "var",
 				name: isClient ? "client" : undefined,

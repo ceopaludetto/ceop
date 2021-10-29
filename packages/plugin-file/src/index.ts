@@ -1,21 +1,23 @@
 import type { Plugin } from "@ceop/utils";
 import type { RuleSetRule } from "webpack-node-externals/node_modules/webpack";
 
-const plugin: Plugin = (configuration, { isDev, target }) => {
+const plugin: Plugin = (configuration) => {
 	if (configuration.module?.rules) {
 		const { rules } = configuration.module;
 
 		configuration.module.rules = [
 			{
 				oneOf: [
+					...(rules as RuleSetRule[]),
 					{
-						loader: "file-loader",
-						options: {
-							name: isDev ? "[name].[ext]" : "[name].[contenthash:8].[ext]",
-							emitFile: !isDev && target === "client",
+						exclude: [/^$/, /\.(js|mjs|jsx|ts|tsx)$/, /\.json$/],
+						type: "asset",
+						parser: {
+							dataUrlCondition: {
+								maxSize: 10 * 1024, // 10kb
+							},
 						},
 					},
-					...(rules as RuleSetRule[]),
 				],
 			},
 		];
