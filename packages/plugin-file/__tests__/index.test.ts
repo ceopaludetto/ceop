@@ -27,6 +27,9 @@ describe("Loadable Plugin", () => {
 										maxSize: 10 * 1024, // 10kb
 									},
 								},
+								generator: {
+									emit: true,
+								},
 							},
 						],
 					},

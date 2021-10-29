@@ -1,7 +1,7 @@
 import type { Plugin } from "@ceop/utils";
 import type { RuleSetRule } from "webpack-node-externals/node_modules/webpack";
 
-const plugin: Plugin = (configuration) => {
+const plugin: Plugin = (configuration, { target, isDev }) => {
 	if (configuration.module?.rules) {
 		const { rules } = configuration.module;
 
@@ -16,6 +16,9 @@ const plugin: Plugin = (configuration) => {
 							dataUrlCondition: {
 								maxSize: 10 * 1024, // 10kb
 							},
+						},
+						generator: {
+							emit: target === "client",
 						},
 					},
 				],
