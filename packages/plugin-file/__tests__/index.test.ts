@@ -15,18 +15,21 @@ describe("Loadable Plugin", () => {
 
 		applyPlugin(configuration, { target: "client", isDev: true, browserslist: [] });
 		expect(configuration).toStrictEqual({
-			module: { rules: [{ oneOf: [{ loader: "file-loader", options: { name: "[name].[ext]", emitFile: false } }] }] },
-		});
-	});
-
-	it("should add contenthash if is production", () => {
-		const configuration: Configuration = { module: { rules: [] } };
-
-		applyPlugin(configuration, { target: "client", isDev: false, browserslist: [] });
-		expect(configuration).toStrictEqual({
 			module: {
 				rules: [
-					{ oneOf: [{ loader: "file-loader", options: { name: "[name].[contenthash:8].[ext]", emitFile: true } }] },
+					{
+						oneOf: [
+							{
+								exclude: [/^$/, /\.(js|mjs|jsx|ts|tsx)$/, /\.json$/],
+								type: "asset",
+								parser: {
+									dataUrlCondition: {
+										maxSize: 10 * 1024, // 10kb
+									},
+								},
+							},
+						],
+					},
 				],
 			},
 		});
