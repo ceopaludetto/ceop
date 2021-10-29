@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/ceopaludetto/ceop/compare/@ceop/cli@1.2.10...@ceop/cli@1.2.11) (2021-10-29)
+
+**Note:** Version bump only for package @ceop/cli
+
+
+
+
+
 ## [1.2.10](https://github.com/ceopaludetto/ceop/compare/@ceop/cli@1.2.9...@ceop/cli@1.2.10) (2021-10-29)
 
 **Note:** Version bump only for package @ceop/cli

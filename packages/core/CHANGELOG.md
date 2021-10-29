@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.3.0...@ceop/core@1.3.1) (2021-10-29)
+
+
+### Bug Fixes
+
+* asset filename ([a631c31](https://github.com/ceopaludetto/ceop/commit/a631c317100600e124b26f5fbf22bee41d4c1f66))
+
+
+
+
+
 # [1.3.0](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.2.9...@ceop/core@1.3.0) (2021-10-29)
 
 
