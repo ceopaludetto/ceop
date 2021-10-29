@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-file@1.2.0...@ceop/plugin-file@1.2.1) (2021-10-29)
+
+
+### Bug Fixes
+
+* **plugin-file:** avoid emit when target is server ([7c600e1](https://github.com/ceopaludetto/ceop/commit/7c600e1b4ea3028746c5095e059d6cb32df0a40e))
+
+
+
+
+
 # [1.2.0](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-file@1.1.1...@ceop/plugin-file@1.2.0) (2021-10-29)
 
 
