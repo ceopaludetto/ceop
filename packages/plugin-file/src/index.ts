@@ -8,7 +8,6 @@ const plugin: Plugin = (configuration, { isDev, target }) => {
 		configuration.module.rules = [
 			{
 				oneOf: [
-					...(rules as RuleSetRule[]),
 					{
 						loader: "file-loader",
 						options: {
@@ -16,6 +15,7 @@ const plugin: Plugin = (configuration, { isDev, target }) => {
 							emitFile: !isDev && target === "client",
 						},
 					},
+					...(rules as RuleSetRule[]),
 				],
 			},
 		];
