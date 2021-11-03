@@ -1,6 +1,12 @@
 import type { Configuration } from "webpack";
 
-import { addRule, addPlugin, addOptimization, addBabelPluginsOrPresets } from "../../src/helpers/webpack";
+import {
+	addRule,
+	addPlugin,
+	addOptimization,
+	addBabelPluginsOrPresets,
+	removeBabelPluginsOrPresets,
+} from "../../src/helpers/webpack";
 
 describe("addRule", () => {
 	it("should ignores if rule array does not exists", () => {
@@ -114,6 +120,76 @@ describe("addBabelPluginsOrPresets", () => {
 		expect(configuration).toStrictEqual({
 			module: {
 				rules: [{ test: /\.tsx?$/, use: [{ loader: "babel-loader", options: { plugins: ["test"], presets: [] } }] }],
+			},
+		});
+	});
+});
+
+describe("removeBabelPluginsOrPresets", () => {
+	it("should do nothing when no .tsx? is found", () => {
+		const configuration: Configuration = { module: { rules: [] } };
+
+		removeBabelPluginsOrPresets(configuration, "plugins", "@babel/preset-typescript");
+		expect(configuration).toStrictEqual({ module: { rules: [] } });
+	});
+
+	it("should throw when .tsx? is found but babel-loader isn't", () => {
+		const configuration: Configuration = { module: { rules: [{ test: /\.tsx?$/, use: [] }] } };
+
+		try {
+			removeBabelPluginsOrPresets(configuration, "plugins", "@babel/preset-typescript");
+		} catch (error) {
+			expect(error).toBeInstanceOf(Error);
+		}
+	});
+
+	it("should throw if preset or plugin is not found", () => {
+		const configuration: Configuration = {
+			module: { rules: [{ test: /\.tsx?$/, use: [{ loader: "babel-loader", options: { presets: [] } }] }] },
+		};
+
+		try {
+			removeBabelPluginsOrPresets(configuration, "presets", "@babel/preset-typescript");
+		} catch (error) {
+			expect(error).toBeInstanceOf(Error);
+		}
+	});
+
+	it("should remove plugin or preset if found and is plain", () => {
+		const configuration: Configuration = {
+			module: {
+				rules: [
+					{ test: /\.tsx?$/, use: [{ loader: "babel-loader", options: { presets: ["@babel/preset-typescript"] } }] },
+				],
+			},
+		};
+
+		removeBabelPluginsOrPresets(configuration, "presets", "@babel/preset-typescript");
+		expect(configuration).toStrictEqual({
+			module: {
+				rules: [{ test: /\.tsx?$/, use: [{ loader: "babel-loader", options: { presets: [] } }] }],
+			},
+		});
+	});
+
+	it("should remove plugin or preset if found and is array", () => {
+		const configuration: Configuration = {
+			module: {
+				rules: [
+					{
+						test: /\.tsx?$/,
+						use: [
+							{ loader: "babel-loader", options: { presets: [["@babel/preset-typescript", { some: "options" }]] } },
+						],
+					},
+				],
+			},
+		};
+
+		removeBabelPluginsOrPresets(configuration, "presets", "@babel/preset-typescript");
+		expect(configuration).toStrictEqual({
+			module: {
+				rules: [{ test: /\.tsx?$/, use: [{ loader: "babel-loader", options: { presets: [] } }] }],
 			},
 		});
 	});

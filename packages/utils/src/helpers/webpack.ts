@@ -84,29 +84,16 @@ export function removeBabelPluginsOrPresets(c: Configuration, type: "plugins" | 
 			if (typeof loader === "object") {
 				const options = typeof loader?.options === "object" ? loader?.options : {};
 
-				if (type === "plugins" && options?.plugins) {
-					const pluginIndex = options.plugins.findIndex((plugin: string | any[]) => {
-						if (Array.isArray(plugin)) return plugin[0] === search;
+				const itemIndex = options[type].findIndex((item: string | any[]) => {
+					if (Array.isArray(item)) return item[0].includes(search);
 
-						return plugin === search;
-					});
+					return item.includes(search);
+				});
 
-					if (pluginIndex < 0) throw new Error(`plugin ${search} not found`);
+				if (itemIndex < 0) throw new Error(`plugin or preset ${search} not found`);
 
-					delete options.plugins[pluginIndex];
-				}
-
-				if (type === "presets" && options?.presets) {
-					const pluginIndex = options.presets.findIndex((preset: string | any[]) => {
-						if (Array.isArray(preset)) return preset[0] === search;
-
-						return preset === search;
-					});
-
-					if (pluginIndex < 0) throw new Error(`preset ${search} not found`);
-
-					delete options.presets[pluginIndex];
-				}
+				delete options[type][itemIndex];
+				options[type] = options[type].filter(Boolean);
 
 				rule.use[index] = {
 					...loader,
