@@ -52,7 +52,9 @@ export async function createConfiguration(
 		mode: isDev ? "development" : "production",
 		target: isServer ? "node" : "web",
 		bail: !isDev,
-		externals: [isServer && externals({ allowlist: ["webpack/hot/poll?300"] })].filter(Boolean) as any,
+		externals: [isServer && externals({ allowlist: ["webpack/hot/poll?300", "@ceop/mute-hmr"] })].filter(
+			Boolean,
+		) as any,
 		devtool: isDev ? "eval-source-map" : "source-map",
 		entry,
 		context,
@@ -111,6 +113,10 @@ export async function createConfiguration(
 				isServer &&
 				new Webpack.optimize.LimitChunkCountPlugin({
 					maxChunks: 1,
+				}),
+			isDev &&
+				new Webpack.WatchIgnorePlugin({
+					paths: [/\.js$/, /\.d\.ts$/],
 				}),
 			new Webpack.EnvironmentPlugin({ PORT: port, ...env }),
 		].filter(Boolean) as any,
