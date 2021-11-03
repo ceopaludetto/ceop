@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-typescript@1.1.1...@ceop/plugin-typescript@1.1.2) (2021-11-03)
+
+
+### Bug Fixes
+
+* **plugin-typescript:** ts-loader dependency ([f9551b8](https://github.com/ceopaludetto/ceop/commit/f9551b8abb21350f4331b7bd1f22952e7fa88f68))
+
+
+
+
+
 ## [1.1.1](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-typescript@1.1.0...@ceop/plugin-typescript@1.1.1) (2021-11-03)
 
 **Note:** Version bump only for package @ceop/plugin-typescript
