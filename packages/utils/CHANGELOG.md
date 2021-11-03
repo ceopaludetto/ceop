@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/ceopaludetto/ceop/compare/@ceop/utils@1.3.0...@ceop/utils@1.3.1) (2021-11-03)
+
+
+### Bug Fixes
+
+* remove babel plugin or presets utils ([c5d82ff](https://github.com/ceopaludetto/ceop/commit/c5d82ffcabeefe9ca6c1114ee3ad7f3018b33e86))
+
+
+
+
+
 # [1.3.0](https://github.com/ceopaludetto/ceop/compare/@ceop/utils@1.2.9...@ceop/utils@1.3.0) (2021-11-03)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-file@1.2.2...@ceop/plugin-file@1.2.3) (2021-11-03)
+
+**Note:** Version bump only for package @ceop/plugin-file
+
+
+
+
+
 ## [1.2.2](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-file@1.2.1...@ceop/plugin-file@1.2.2) (2021-11-03)
 
 **Note:** Version bump only for package @ceop/plugin-file

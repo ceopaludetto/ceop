@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-compress@1.2.10...@ceop/plugin-compress@1.2.11) (2021-11-03)
+
+**Note:** Version bump only for package @ceop/plugin-compress
+
+
+
+
+
 ## [1.2.10](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-compress@1.2.9...@ceop/plugin-compress@1.2.10) (2021-11-03)
 
 **Note:** Version bump only for package @ceop/plugin-compress
