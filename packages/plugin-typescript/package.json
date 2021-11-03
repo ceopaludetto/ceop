@@ -15,8 +15,7 @@
 	"scripts": {
 		"build": "tsdx build --tsconfig ./tsconfig.json",
 		"lint": "eslint src/* --fix",
-		"start": "tsdx watch --tsconfig ./tsconfig.json",
-		"test": "tsdx test"
+		"start": "tsdx watch --tsconfig ./tsconfig.json"
 	},
 	"dependencies": {
 		"@ceop/utils": "^1.2.9"
