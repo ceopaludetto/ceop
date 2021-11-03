@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2021-11-03)
+
+
+### Bug Fixes
+
+* remove tests from plugin-typescript ([52b14a9](https://github.com/ceopaludetto/ceop/commit/52b14a916b63ff29dda59d5b20b3fbdaa4841465))
+
+
+### Features
+
+* add new package-typescript and utils to handle this config ([216f47c](https://github.com/ceopaludetto/ceop/commit/216f47c8380d874c485b70aa4b3df25e54c30eed))
+
+
+
+
+
 ## [1.2.1](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-file@1.2.0...@ceop/plugin-file@1.2.1) (2021-10-29)
 
 

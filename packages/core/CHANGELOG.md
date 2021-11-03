@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.3.1...@ceop/core@1.4.0) (2021-11-03)
+
+
+### Features
+
+* add new package-typescript and utils to handle this config ([216f47c](https://github.com/ceopaludetto/ceop/commit/216f47c8380d874c485b70aa4b3df25e54c30eed))
+
+
+
+
+
 ## [1.3.1](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.3.0...@ceop/core@1.3.1) (2021-10-29)
 
 
