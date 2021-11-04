@@ -13,6 +13,7 @@
 	"license": "MIT",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"main": "src/index.js",
+	"module": "src/index.js",
 	"files": [
 		"src",
 		"package.json"

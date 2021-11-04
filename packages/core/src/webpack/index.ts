@@ -36,11 +36,10 @@ export async function createConfiguration(
 	if (configuration.mode === "both") {
 		if (isClient) entry.push(normalize(configuration.entry.client));
 		if (isServer) entry.push(normalize(configuration.entry.server));
+	}
 
-		if (isServer && isDev) {
-			entry.unshift(`${require.resolve("webpack/hot/poll")}?300`);
-			entry.unshift(require.resolve("@ceop/mute-hmr"));
-		}
+	if (isDev) {
+		entry.unshift(require.resolve("@ceop/mute-hmr"));
 	}
 
 	const publicPath = isDev ? `http://localhost:${devPort}/` : "/";
@@ -52,9 +51,7 @@ export async function createConfiguration(
 		mode: isDev ? "development" : "production",
 		target: isServer ? "node" : "web",
 		bail: !isDev,
-		externals: [isServer && externals({ allowlist: ["webpack/hot/poll?300", "@ceop/mute-hmr"] })].filter(
-			Boolean,
-		) as any,
+		externals: [isServer && externals({ allowlist: ["@ceop/mute-hmr"] })].filter(Boolean) as any,
 		devtool: isDev ? "eval-source-map" : "source-map",
 		entry,
 		context,
@@ -102,11 +99,10 @@ export async function createConfiguration(
 				isServer &&
 				new StartServerPlugin({
 					nodeArgs: ["-r", require.resolve("source-map-support/register")],
-					killOnExit: false,
+					killOnExit: true,
 					killOnError: false,
 					verbose: false,
 					debug: false,
-					inject: false,
 				}),
 			!isDev && isClient && new Webpack.optimize.AggressiveMergingPlugin(),
 			!isDev &&
