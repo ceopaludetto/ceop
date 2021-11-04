@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.4.1...@ceop/core@1.4.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* hot reload issues related to server ([480f45c](https://github.com/ceopaludetto/ceop/commit/480f45cab4cd076546f0d78f109facc80afdc408))
+
+
+
+
+
 ## [1.4.1](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.4.0...@ceop/core@1.4.1) (2021-11-03)
 
 **Note:** Version bump only for package @ceop/core
