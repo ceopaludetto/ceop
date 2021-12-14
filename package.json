@@ -37,6 +37,9 @@
 		"baseBranch": "origin/master",
 		"pipeline": {
 			"lint": {},
+			"start": {
+				"cache": false
+			},
 			"build": {
 				"outputs": [
 					"dist/**"

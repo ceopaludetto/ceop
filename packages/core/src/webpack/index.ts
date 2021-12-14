@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { CeopConfiguration, Target, normalize, context, applyPlugins } from "@ceop/utils";
-// @ts-ignore
-import StartServerPlugin from "razzle-start-server-webpack-plugin";
+import NodemonWebpackPlugin from "nodemon-webpack-plugin";
 import TerserWebpackPlugin from "terser-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import Webpack, { Configuration } from "webpack";
@@ -10,7 +9,7 @@ import externals from "webpack-node-externals";
 import { getEnv } from "./env";
 import { tsRule } from "./rules";
 
-export interface ConfigurationOptions {
+export interface IConfigurationOptions {
 	browserslist: string[];
 	devPort: number;
 	port: number;
@@ -19,7 +18,7 @@ export interface ConfigurationOptions {
 
 export async function createConfiguration(
 	configuration: CeopConfiguration,
-	options: ConfigurationOptions,
+	options: IConfigurationOptions,
 ): Promise<Configuration> {
 	const { target, devPort, port, browserslist } = options;
 
@@ -97,12 +96,9 @@ export async function createConfiguration(
 			isDev && new Webpack.HotModuleReplacementPlugin(),
 			isDev &&
 				isServer &&
-				new StartServerPlugin({
+				new NodemonWebpackPlugin({
 					nodeArgs: ["-r", require.resolve("source-map-support/register")],
-					killOnExit: true,
-					killOnError: false,
 					verbose: false,
-					debug: false,
 				}),
 			!isDev && isClient && new Webpack.optimize.AggressiveMergingPlugin(),
 			!isDev &&
