@@ -2,7 +2,7 @@ import { CeopConfiguration, validationSchema } from "../../src/helpers/validatio
 
 describe("validationSchema", () => {
 	it("should check if configuration is provided", () => {
-		expect(validationSchema.validate({})).resolves.toThrow();
+		expect(validationSchema.validate({})).resolves.toStrictEqual({entry: {client: "src/client/index.tsx", server: "src/server/index.ts"}, mode: "both"});
 	});
 
 	it("should resolves if valid value is passed", () => {
