@@ -1,16 +1,12 @@
-const path = require("path");
+const { resolve } = require("path");
 
-module.exports = {
-	env: {
-		node: true,
-		jest: true,
-	},
+module.exports = (dirname) => ({
 	parser: "@typescript-eslint/parser",
-	extends: ["airbnb-base", "airbnb-typescript/base", "prettier"],
+	extends: ["prettier"],
 	plugins: ["@typescript-eslint", "import-helpers", "prettier"],
 	parserOptions: {
 		sourceType: "module",
-		project: path.resolve("tsconfig.json"),
+		project: resolve(dirname, "tsconfig.lint.json")
 	},
 	rules: {
 		// Prettier for autofix
@@ -43,4 +39,4 @@ module.exports = {
 		"@typescript-eslint/no-explicit-any": "off",
 		"@typescript-eslint/explicit-member-accessibility": ["error"],
 	},
-};
+});

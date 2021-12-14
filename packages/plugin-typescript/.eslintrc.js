@@ -1,1 +1,1 @@
-module.exports = require("@ceop/eslint")
+module.exports = require("@ceop/eslint/base")(__dirname);

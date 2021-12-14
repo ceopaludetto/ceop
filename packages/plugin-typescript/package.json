@@ -14,7 +14,7 @@
 	],
 	"scripts": {
 		"build": "tsdx build --tsconfig ./tsconfig.json",
-		"lint": "eslint src/* --fix",
+		"lint": "eslint \"src/*\" --fix",
 		"start": "tsdx watch --tsconfig ./tsconfig.json"
 	},
 	"dependencies": {
@@ -24,6 +24,7 @@
 	"devDependencies": {
 		"@ceop/eslint": "*",
 		"@ceop/typescript": "*",
+		"eslint": "^7.0.0",
 		"webpack": "^5.60.0"
 	},
 	"publishConfig": {
