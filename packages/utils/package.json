@@ -27,9 +27,11 @@
 		"yup": "^0.32.9"
 	},
 	"devDependencies": {
-		"@ceop/eslint": "*",
+		"@rushstack/eslint-config": "^2.5.0",
 		"@types/fs-extra": "^9.0.13",
-		"eslint": "^7.0.0",
+		"eslint": "^8.4.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
 		"webpack": "^5.60.0"
 	},
 	"publishConfig": {

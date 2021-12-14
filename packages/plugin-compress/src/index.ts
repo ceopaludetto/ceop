@@ -18,7 +18,7 @@ const plugin: Plugin = (configuration, { target, isDev }) => {
 			configuration,
 			new CompressionWebpackPlugin({
 				filename: "[path][base].br",
-				algorithm: "brotliCompress" as any,
+				algorithm: "brotliCompress",
 				test: /\.(js|css)$/,
 				compressionOptions: {
 					params: {

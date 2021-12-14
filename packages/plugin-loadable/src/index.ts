@@ -2,7 +2,7 @@ import { addBabelPluginsOrPresets, addPlugin, normalize, Plugin } from "@ceop/ut
 // @ts-ignore
 import LoadablePlugin from "@loadable/webpack-plugin";
 
-const path = normalize("dist/assets.json");
+const path: string = normalize("dist/assets.json");
 
 process.env.CEOP_LOADABLE = path;
 

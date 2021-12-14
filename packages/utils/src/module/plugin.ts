@@ -1,10 +1,10 @@
 import type { Configuration } from "webpack";
 
 import type { CeopConfiguration } from "../helpers/validation";
-import type { Plugin, PluginOptions } from "../types";
+import type { Plugin, IPluginOptions } from "../types";
 import { resolve } from "./path";
 
-export async function getPlugins(configuration: CeopConfiguration) {
+export async function getPlugins(configuration: CeopConfiguration): Promise<Plugin[]> {
 	if (configuration?.plugins?.length) {
 		return Promise.all(
 			configuration.plugins.map(async (plugin) => {
@@ -27,8 +27,8 @@ export async function getPlugins(configuration: CeopConfiguration) {
 export async function applyPlugins(
 	ceopConfiguration: CeopConfiguration,
 	configuration: Configuration,
-	options: PluginOptions,
-) {
+	options: IPluginOptions,
+): Promise<Configuration> {
 	const plugins = await getPlugins(ceopConfiguration);
 
 	for (const plugin of plugins) {

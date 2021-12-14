@@ -29,9 +29,11 @@
 		"style-loader": "^3.3.0"
 	},
 	"devDependencies": {
-		"@ceop/eslint": "*",
 		"@ceop/typescript": "*",
-		"eslint": "^7.0.0",
+		"@rushstack/eslint-config": "^2.5.0",
+		"eslint": "^8.4.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
 		"webpack": "^5.60.0"
 	},
 	"publishConfig": {

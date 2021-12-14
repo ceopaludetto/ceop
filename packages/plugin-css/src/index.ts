@@ -6,7 +6,7 @@ import MiniCssPlugin from "mini-css-extract-plugin";
 import type { RuleSetUseItem } from "webpack";
 
 const plugin: Plugin = (configuration, { target, isDev, browserslist }) => {
-	const loaders = (modules: boolean) =>
+	const loaders = (modules: boolean): RuleSetUseItem[] =>
 		[
 			isDev && target === "client" && require.resolve("style-loader"),
 			!isDev && target === "client" && MiniCssPlugin.loader,
