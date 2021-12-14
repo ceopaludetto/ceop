@@ -22,6 +22,8 @@
 		"ts-loader": "^9.2.6"
 	},
 	"devDependencies": {
+		"@ceop/eslint": "*",
+		"@ceop/typescript": "*",
 		"webpack": "^5.60.0"
 	},
 	"publishConfig": {

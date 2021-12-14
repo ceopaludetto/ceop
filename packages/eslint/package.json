@@ -1,0 +1,17 @@
+{
+	"name": "@ceop/eslint",
+	"version": "1.0.0",
+	"private": true,
+	"main": "eslint.js",
+	"files": [
+		"eslint.js"
+	],
+	"devDependencies": {
+		"eslint-config-airbnb-base": "^14.2.1",
+		"eslint-config-airbnb-typescript": "^14.0.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.24.2",
+		"eslint-plugin-import-helpers": "^1.1.0",
+		"eslint-plugin-prettier": "^4.0.0"
+	}
+}

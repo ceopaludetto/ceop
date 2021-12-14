@@ -23,6 +23,8 @@
 		"compression-webpack-plugin": "^9.0.0"
 	},
 	"devDependencies": {
+		"@ceop/eslint": "*",
+		"@ceop/typescript": "*",
 		"webpack": "^5.60.0"
 	},
 	"publishConfig": {

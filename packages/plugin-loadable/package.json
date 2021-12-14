@@ -24,6 +24,8 @@
 		"@loadable/webpack-plugin": "^5.15.1"
 	},
 	"devDependencies": {
+		"@ceop/eslint": "*",
+		"@ceop/typescript": "*",
 		"webpack": "^5.60.0"
 	},
 	"publishConfig": {

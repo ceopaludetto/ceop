@@ -27,6 +27,7 @@
 		"yup": "^0.32.9"
 	},
 	"devDependencies": {
+		"@ceop/eslint": "*",
 		"@types/fs-extra": "^9.0.13",
 		"webpack": "^5.60.0"
 	},

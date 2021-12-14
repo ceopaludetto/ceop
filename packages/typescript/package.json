@@ -1,0 +1,9 @@
+{
+	"name": "@ceop/typescript",
+	"version": "1.0.0",
+	"private": true,
+	"main": "main.js",
+	"files": [
+		"base.json"
+	]
+}
