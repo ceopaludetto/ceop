@@ -6,7 +6,9 @@ export function App() {
 
 	return (
 		<div className={s.container}>
-			<button onClick={() => setCount((current) => current + 1)}>{count}</button>
+			<button className={s.button} onClick={() => setCount((current) => current + 1)}>
+				{count}
+			</button>
 		</div>
 	);
 }

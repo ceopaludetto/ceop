@@ -8,12 +8,13 @@
 		"importsNotUsedAsValues": "error",
 		"allowJs": true,
 		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
 		"isolatedModules": true,
 		"strict": true,
 		"importHelpers": true,
 		"declaration": true,
-		"sourceMap": true
+		"sourceMap": true,
+		"skipLibCheck": true,
+		"noEmit": true
 	},
 	"exclude": ["node_modules"]
 }

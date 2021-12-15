@@ -9,7 +9,7 @@ import { logger } from "./logger";
 export async function checkBrowsers() {
 	const current = browserslist.loadConfig({ path: normalize(".") });
 
-	if (current != null) return Promise.resolve(current);
+	if (current !== null) return Promise.resolve(current);
 
 	logger.info("Browserslist configuration not found");
 	logger.log("We'll set default, please check package.json 'browserslist' field");

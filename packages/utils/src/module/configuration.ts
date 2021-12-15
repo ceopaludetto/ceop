@@ -2,7 +2,7 @@ import { CONFIGURATION_FILES } from "../constants";
 import { CeopConfiguration, validationSchema } from "../helpers/validation";
 import { exists, resolve, normalize } from "./path";
 
-export async function hasConfigFile() {
+export async function hasConfigFile(): Promise<string | undefined> {
 	const files = await Promise.all(CONFIGURATION_FILES.map(async (file) => exists(file)));
 
 	if (files.some((file) => !!file)) {

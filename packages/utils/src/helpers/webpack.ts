@@ -2,7 +2,11 @@ import type { Configuration, RuleSetRule, WebpackPluginInstance } from "webpack"
 
 type BabelPlugins = (string | Record<string, any>)[];
 
-export function findRuleByRegex(c: Configuration, regex: string, callback: (rule: RuleSetRule) => RuleSetRule) {
+export function findRuleByRegex(
+	c: Configuration,
+	regex: string,
+	callback: (rule: RuleSetRule) => RuleSetRule,
+): Configuration {
 	if (c.module?.rules) {
 		c.module.rules = c.module.rules.map((rule) => {
 			if (typeof rule === "string") return rule;
@@ -14,10 +18,15 @@ export function findRuleByRegex(c: Configuration, regex: string, callback: (rule
 			return rule;
 		});
 	}
+
 	return c;
 }
 
-export function addBabelPluginsOrPresets(c: Configuration, type: "plugins" | "presets", add: BabelPlugins) {
+export function addBabelPluginsOrPresets(
+	c: Configuration,
+	type: "plugins" | "presets",
+	add: BabelPlugins,
+): Configuration {
 	return findRuleByRegex(c, "tsx?", (rule) => {
 		if (rule?.use && Array.isArray(rule.use)) {
 			const index = rule.use.findIndex((use) => {
@@ -63,7 +72,11 @@ export function addBabelPluginsOrPresets(c: Configuration, type: "plugins" | "pr
 	});
 }
 
-export function removeBabelPluginsOrPresets(c: Configuration, type: "plugins" | "presets", search: string) {
+export function removeBabelPluginsOrPresets(
+	c: Configuration,
+	type: "plugins" | "presets",
+	search: string,
+): Configuration {
 	return findRuleByRegex(c, "tsx?", (rule) => {
 		if (rule?.use && Array.isArray(rule.use)) {
 			const index = rule.use.findIndex((use) => {
@@ -106,17 +119,17 @@ export function removeBabelPluginsOrPresets(c: Configuration, type: "plugins" | 
 	});
 }
 
-export function addRule(c: Configuration, rule: RuleSetRule) {
+export function addRule(c: Configuration, rule: RuleSetRule): Configuration {
 	c.module?.rules?.push(rule);
 	return c;
 }
 
-export function addPlugin(c: Configuration, plugin: WebpackPluginInstance) {
+export function addPlugin(c: Configuration, plugin: WebpackPluginInstance): Configuration {
 	c.plugins?.push(plugin);
 	return c;
 }
 
-export function addOptimization(c: Configuration, plugin: WebpackPluginInstance) {
+export function addOptimization(c: Configuration, plugin: WebpackPluginInstance): Configuration {
 	c.optimization?.minimizer?.push(plugin);
 	return c;
 }

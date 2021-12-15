@@ -99,6 +99,7 @@ export async function createConfiguration(
 				new NodemonWebpackPlugin({
 					nodeArgs: ["-r", require.resolve("source-map-support/register")],
 					verbose: false,
+					quiet: true,
 				}),
 			!isDev && isClient && new Webpack.optimize.AggressiveMergingPlugin(),
 			!isDev &&
