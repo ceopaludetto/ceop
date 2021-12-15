@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/ceopaludetto/ceop/compare/@ceop/utils@1.5.0...@ceop/utils@1.5.1) (2021-12-15)
+
+
+### Bug Fixes
+
+* nodemon settings, example project, cleanup ([ecb3c39](https://github.com/ceopaludetto/ceop/commit/ecb3c39ecd48ecefa781085e3ca52b094bd5c209))
+
+
+
+
+
 # [1.5.0](https://github.com/ceopaludetto/ceop/compare/@ceop/utils@1.3.1...@ceop/utils@1.5.0) (2021-12-15)
 
 
