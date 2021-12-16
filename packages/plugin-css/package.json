@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/plugin-css",
-	"version": "1.4.1",
+	"version": "1.5.0",
 	"description": "> TODO: description",
 	"homepage": "",
 	"license": "MIT",
@@ -18,7 +18,7 @@
 		"start": "tsup-node src/index.ts --format cjs,esm --dts --watch"
 	},
 	"dependencies": {
-		"@ceop/utils": "^1.5.1",
+		"@ceop/utils": "^1.6.0",
 		"css-loader": "^6.5.1",
 		"css-minimizer-webpack-plugin": "^3.3.0",
 		"css-modules-typescript-loader": "^4.0.1",
@@ -29,7 +29,7 @@
 		"style-loader": "^3.3.1"
 	},
 	"devDependencies": {
-		"@ceop/test": "*",
+		"@ceop/test": "^1.1.0",
 		"@ceop/typescript": "^1.2.1",
 		"@rushstack/eslint-config": "^2.5.0",
 		"eslint": "^8.4.1",

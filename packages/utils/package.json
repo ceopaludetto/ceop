@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/utils",
-	"version": "1.5.1",
+	"version": "1.6.0",
 	"description": "> TODO: description",
 	"homepage": "",
 	"license": "MIT",
@@ -27,7 +27,7 @@
 		"yup": "^0.32.9"
 	},
 	"devDependencies": {
-		"@ceop/test": "*",
+		"@ceop/test": "^1.1.0",
 		"@ceop/typescript": "*",
 		"@rushstack/eslint-config": "^2.5.0",
 		"@types/fs-extra": "^9.0.13",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-compress@1.4.1...@ceop/plugin-compress@1.5.0) (2021-12-16)
+
+
+### Features
+
+* add package for jest configuration shared between other packages ([42727db](https://github.com/ceopaludetto/ceop/commit/42727db938cb5b9c44827b99ba45d023daab1982))
+* move to stup and bump packages ([681c13b](https://github.com/ceopaludetto/ceop/commit/681c13b116090d198ad293ebecc7ea8f122f9dae))
+
+
+
+
+
 ## [1.4.1](https://github.com/ceopaludetto/ceop/compare/@ceop/plugin-compress@1.4.0...@ceop/plugin-compress@1.4.1) (2021-12-15)
 
 **Note:** Version bump only for package @ceop/plugin-compress

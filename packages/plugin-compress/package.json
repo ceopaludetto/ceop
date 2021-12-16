@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/plugin-compress",
-	"version": "1.4.1",
+	"version": "1.5.0",
 	"description": "> TODO: description",
 	"homepage": "",
 	"license": "MIT",
@@ -19,11 +19,11 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"@ceop/utils": "^1.5.1",
+		"@ceop/utils": "^1.6.0",
 		"compression-webpack-plugin": "^9.2.0"
 	},
 	"devDependencies": {
-		"@ceop/test": "*",
+		"@ceop/test": "^1.1.0",
 		"@ceop/typescript": "^1.2.1",
 		"@rushstack/eslint-config": "^2.5.0",
 		"eslint": "^8.4.1",
