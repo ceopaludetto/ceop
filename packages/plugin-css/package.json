@@ -6,27 +6,27 @@
 	"license": "MIT",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"main": "dist/index.js",
-	"module": "dist/plugin-css.esm.js",
+	"module": "dist/index.mjs",
 	"typings": "dist/index.d.ts",
 	"files": [
 		"dist",
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsdx build --tsconfig ./tsconfig.json",
+		"build": "tsup-node src/index.ts --format cjs,esm --dts --clean",
 		"lint": "eslint \"src/*\" --fix",
-		"start": "tsdx watch --tsconfig ./tsconfig.json"
+		"start": "tsup-node src/index.ts --format cjs,esm --dts --watch"
 	},
 	"dependencies": {
 		"@ceop/utils": "^1.5.1",
-		"css-loader": "^6.4.0",
-		"css-minimizer-webpack-plugin": "^3.1.1",
+		"css-loader": "^6.5.1",
+		"css-minimizer-webpack-plugin": "^3.3.0",
 		"css-modules-typescript-loader": "^4.0.1",
-		"mini-css-extract-plugin": "^2.4.2",
-		"postcss": "^8.3.9",
-		"postcss-loader": "^6.2.0",
-		"postcss-preset-env": "^6.7.0",
-		"style-loader": "^3.3.0"
+		"mini-css-extract-plugin": "^2.4.5",
+		"postcss": "^8.4.5",
+		"postcss-loader": "^6.2.1",
+		"postcss-preset-env": "^7.0.2",
+		"style-loader": "^3.3.1"
 	},
 	"devDependencies": {
 		"@ceop/typescript": "^1.2.1",
@@ -34,7 +34,7 @@
 		"eslint": "^8.4.1",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
-		"webpack": "^5.60.0"
+		"webpack": "^5.65.0"
 	},
 	"publishConfig": {
 		"access": "public"

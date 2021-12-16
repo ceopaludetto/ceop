@@ -6,20 +6,20 @@
 	"license": "MIT",
 	"author": "Carlos Eduardo <ceo.paludetto@gmail.com>",
 	"main": "dist/index.js",
-	"module": "dist/utils.esm.js",
+	"module": "dist/index.mjs",
 	"typings": "dist/index.d.ts",
 	"files": [
 		"dist",
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsdx build --tsconfig ./tsconfig.json",
+		"build": "tsup-node src/index.ts --format cjs,esm --dts --clean",
 		"lint": "eslint \"src/*\" --fix",
-		"start": "tsdx watch --tsconfig ./tsconfig.json",
+		"start": "tsup-node src/index.ts --format cjs,esm --dts --watch",
 		"test": "tsdx test"
 	},
 	"dependencies": {
-		"browserslist": "^4.17.4",
+		"browserslist": "^4.19.1",
 		"consola": "^2.15.3",
 		"detect-port-alt": "^1.1.6",
 		"fs-extra": "^10.0.0",
@@ -32,7 +32,7 @@
 		"eslint": "^8.4.1",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
-		"webpack": "^5.60.0"
+		"webpack": "^5.65.0"
 	},
 	"publishConfig": {
 		"access": "public"

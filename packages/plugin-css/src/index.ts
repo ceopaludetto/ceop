@@ -1,5 +1,4 @@
 import { addRule, addPlugin, addOptimization, Plugin } from "@ceop/utils";
-// @ts-ignore
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 // @ts-ignore
 import MiniCssPlugin from "mini-css-extract-plugin";

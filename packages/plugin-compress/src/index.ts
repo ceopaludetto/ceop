@@ -1,5 +1,4 @@
 import { addPlugin, Plugin } from "@ceop/utils";
-// @ts-ignore
 import CompressionWebpackPlugin from "compression-webpack-plugin";
 import zlib from "zlib";
 
@@ -24,7 +23,7 @@ const plugin: Plugin = (configuration, { target, isDev }) => {
 					params: {
 						[zlib.constants.BROTLI_PARAM_QUALITY]: 11,
 					},
-				},
+				} as any,
 			}),
 		);
 	}

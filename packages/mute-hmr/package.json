@@ -19,7 +19,7 @@
 		"package.json"
 	],
 	"dependencies": {
-		"webpack": "^5.60.0"
+		"webpack": "^5.65.0"
 	},
 	"publishConfig": {
 		"access": "public"
