@@ -16,7 +16,7 @@
 		"build": "tsup-node src/index.ts --format cjs,esm --dts --clean",
 		"lint": "eslint \"src/*\" --fix",
 		"start": "tsup-node src/index.ts --format cjs,esm --dts --watch",
-		"test": "tsdx test"
+		"test": "jest"
 	},
 	"dependencies": {
 		"browserslist": "^4.19.1",
@@ -27,6 +27,8 @@
 		"yup": "^0.32.9"
 	},
 	"devDependencies": {
+		"@ceop/test": "*",
+		"@ceop/typescript": "*",
 		"@rushstack/eslint-config": "^2.5.0",
 		"@types/fs-extra": "^9.0.13",
 		"eslint": "^8.4.1",

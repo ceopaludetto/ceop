@@ -22,6 +22,7 @@
 		"ts-loader": "^9.2.6"
 	},
 	"devDependencies": {
+		"@ceop/test": "*",
 		"@ceop/typescript": "^1.2.1",
 		"@rushstack/eslint-config": "^2.5.0",
 		"eslint": "^8.4.1",

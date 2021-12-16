@@ -17,7 +17,7 @@
 		"release": "lerna publish from-git --yes",
 		"postrelease": "git push --follow-tags origin",
 		"start": "turbo run start --parallel",
-		"test": "turbo run test -- --coverage",
+		"test": "COLLECT_COVERAGE=true turbo run test",
 		"unlink:all": "lerna exec -- yarn unlink"
 	},
 	"devDependencies": {
