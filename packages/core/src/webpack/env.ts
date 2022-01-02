@@ -9,10 +9,9 @@ export function getEnv() {
 
 	const files = [normalize(`.env.${NODE_ENV}`), normalize(`.env.${NODE_ENV}.local`)];
 
-	// eslint-disable-next-line guard-for-in
-	for (const file in files) {
+	files.forEach((file) => {
 		expand(dotenv.config({ path: file }));
-	}
+	});
 
 	const CEOP = /^CEOP_/i;
 

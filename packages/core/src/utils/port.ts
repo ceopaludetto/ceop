@@ -5,10 +5,18 @@ export async function parsePorts() {
 	const devPort = process.env.PORT ? parseInt(process.env.PORT, 10) : port + 1;
 
 	const resolve = await choosePort(port);
-	const devResolve = await choosePort(devPort);
+	let devResolve = await choosePort(devPort);
 
 	if (resolve !== port) {
 		logger.info(`Port ${port} is busy, using ${resolve}`);
+	}
+
+	if (devResolve === resolve) {
+		devResolve = await choosePort(devResolve + 1);
+	}
+
+	if (devResolve !== devPort) {
+		logger.info(`Dev port ${devPort} is busy, using ${devResolve}`);
 	}
 
 	return {

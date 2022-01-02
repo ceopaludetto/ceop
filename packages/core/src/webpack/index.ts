@@ -111,7 +111,7 @@ export async function createConfiguration(
 				new Webpack.WatchIgnorePlugin({
 					paths: [/\.js$/, /\.d\.ts$/],
 				}),
-			new Webpack.EnvironmentPlugin({ PORT: port, ...env }),
+			new Webpack.DefinePlugin({ "process.env": JSON.stringify({ PORT: port, ...env }) }),
 		].filter(Boolean) as any,
 		resolve: {
 			extensions: [".js", ".jsx", ".ts", ".tsx"],
