@@ -1,6 +1,6 @@
 {
 	"name": "@ceop/cli",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"description": "> TODO: description",
 	"homepage": "",
 	"license": "MIT",
@@ -12,7 +12,7 @@
 		"src"
 	],
 	"dependencies": {
-		"@ceop/core": "^1.7.0",
+		"@ceop/core": "^1.7.1",
 		"commander": "^8.3.0"
 	},
 	"publishConfig": {

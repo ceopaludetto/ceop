@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.7.0...@ceop/core@1.7.1) (2022-01-02)
+
+
+### Bug Fixes
+
+* choose port and environment ([7d2fbfa](https://github.com/ceopaludetto/ceop/commit/7d2fbfa73e0e1340f2a85341a92789eae37e0285))
+
+
+
+
+
 # [1.7.0](https://github.com/ceopaludetto/ceop/compare/@ceop/core@1.6.1...@ceop/core@1.7.0) (2021-12-16)
 
 
